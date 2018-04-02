@@ -5,17 +5,60 @@
 -->
 <!doctype html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="/stylesheets/mui.min.css" rel="stylesheet" />
 		<link href="/stylesheets/formsheet.css" rel="stylesheet" />
-		 <link rel="stylesheet" type="text/css" href="/stylesheets/mui.picker.min.css" />
+		<link rel="stylesheet" type="text/css" href="/stylesheets/mui.picker.min.css" />
+		<!--status.css 是优化UI添加的-->
+		<link href="/stylesheets/status.css" rel="stylesheet" />
 	</head>
 
-	<body>
-		<div class="mui-content-padded contain">
+	<body class="mainBack">
+		<div class="topBack">
+			<div class="statusText">状态：回箱完成</div>
+		</div>
+		<form>
+			<div class="centerBackPickup">
+				<!--填写信息-->
+				<div hidden="hidden" id='xiangDanID'>
+					<%= XiangDanID%>
+				</div>
+				<div id="information" style="position: absolute;">
+					<div class="row">
+						<label class="rowTextPickup">时间</label>
+						<input id="result" data-options='{}' class="time" placeholder="请选择完成时间" />
+					</div>
+					<div class="row">
+						<label class="rowTextPickup">箱号</label>
+						<label class="btnPickup"><%= ContainerNo%></label>
+					</div>
+					<div class="row">
+						<label class="rowTextPickup">铅封号</label>
+						<label class="btnPickup"><%= SealNo%></label>
+					</div>
+					<div class="row">
+						<label class="rowTextPickup">尺寸/规格</label>
+						<label class="btnPickup"><%= ContainerSize%>/<%= ContainerType%></label>
+					</div>
+					<div class="row">
+						<label class="rowTextPickup">描述</label>
+						<%if(Remark != "undefined"){%>
+							<label class="btnPickup"><%= Remark%></label>
+						<%}%>
+					</div>
+
+				</div>
+			</div>
+			<!--提交按钮-->
+			<div>
+				<button id="submit" class="submitInfo">提交</button>
+			</div>
+		</form>
+		<!--<div class="mui-content-padded contain">
 			<div class="register">
 				<form>
 					<div class="mui-input-row status-row" style="border: none;">
@@ -27,25 +70,25 @@
 						<input id='result' type="text" class="mui-input-clear shortline" placeholder="请选择回箱完成的时间" />
 						<button id='demo1' type="button" data-options='{}' class="vertify btn mui-btn mui-btn-primary">选择</button>
 					</div>
-					<div hidden="hidden" id='xiangDanID'><%= XiangDanID%></div>
+					<div hidden="hidden" id='xiangDanID'></div>
 					<div class="mui-card-content2">
 					<div class="item">
 						<span class="item-title"><br>箱号</span>
-						<span style="text-align: left;margin-left: 80px;" ><%= ContainerNo%><br></span>
+						<span style="text-align: left;margin-left: 80px;" ><br></span>
 					</div>
 					
 					<div class="item">
 						<span class="item-title"><br><br><br>封铅号</span>
-						<span style="text-align: left;margin-left: 60px;" ><%= SealNo%><br></span>
+						<span style="text-align: left;margin-left: 60px;" ><br></span>
 					</div>
 					<div class="item">
 						<span class="item-title"><br><br><br>尺寸/规格</span>
-						<span style="text-align: left;margin-left: 30px;" ><%= ContainerSize%>/<%= ContainerType%></span>
+						<span style="text-align: left;margin-left: 30px;" >/<%= ContainerType%></span>
 					</div>
 				
 					<div class="item">
 						<span class="item-title"><br><br><br>描述</span>
-						<span style="text-align: left;margin-left: 80px;" ><%= Remark%><br></span>
+						<span style="text-align: left;margin-left: 80px;" ><br></span>
 						
 					</div>
 				</div>
@@ -54,15 +97,15 @@
 				</form>
 				
 			</div>
-		</div>
+		</div>-->
 		<script src="/javascripts/jquery-1.11.1.min.js"></script>
 		<script src="/javascripts/mui.min.js"></script>
 		<script src="/javascripts/mui.picker.min.js"></script>
 		<script type="text/javascript">
 			(function(mui) {
 				mui.init();
-				var result = mui('#result')[0];
-				var btns = mui('.btn');
+				var result = $('#result')[0];
+				var btns = $('#result');
 				btns.each(function(i, btn) {
 					btn.addEventListener('tap', function() {
 						var optionsJson = this.getAttribute('data-options') || '{}';
@@ -84,7 +127,7 @@
 							 * rs.h 时，用法同年
 							 * rs.i 分（minutes 的第二个字母），用法同年
 							 */
-							document.getElementById("result").value=rs.text;
+							document.getElementById("result").value = rs.text;
 							/*result.innerText = '选择结果: ' + rs.text;*/
 							/* 
 							 * 返回 false 可以阻止选择框的关闭
@@ -101,55 +144,52 @@
 					}, false);
 				});
 			})(mui);
-			
-			var id='';
-			var boxcode='';
-			mui.plusReady(function(){
-				var urlperson=decodeURI(location.search);
-			    var theRequest = new Object();
-			    if (urlperson.indexOf("?") != -1) {
-			        var str = urlperson.substr(1);  
-			        strs = str.split("&");   
-			        for(var i = 0; i < strs.length; i ++) {   
-			        theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);   
-			        }
-			        id = theRequest['orderid'];
-			        boxcode = theRequest['boxcode'];
-			        //$('.leftnav li:nth-child('+nowpageid+')').siblings().removeClass("act");
-			        //$('.leftnav li:nth-child('+nowpageid+')').addClass("act");
-			    }
+
+			var id = '';
+			var boxcode = '';
+			mui.plusReady(function() {
+				var urlperson = decodeURI(location.search);
+				var theRequest = new Object();
+				if(urlperson.indexOf("?") != -1) {
+					var str = urlperson.substr(1);
+					strs = str.split("&");
+					for(var i = 0; i < strs.length; i++) {
+						theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+					}
+					id = theRequest['orderid'];
+					boxcode = theRequest['boxcode'];
+					//$('.leftnav li:nth-child('+nowpageid+')').siblings().removeClass("act");
+					//$('.leftnav li:nth-child('+nowpageid+')').addClass("act");
+				}
 			})
-			
-			mui('.register').on('tap','#submit',function(){		
+
+			$('#submit').click(function() {
 				var result = mui('#result')[0].value;
 				id = mui('#xiangDanID')[0].innerHTML;
-				var operateFlag=true;
+				var operateFlag = true;
 				mui.ajax({
-					type:"post",
-					url:"/statebackfinish",
-					data:{
-						xiangDanID:id,
-						operateFlag:operateFlag,
-						finishTime:result,
-						state:"YS_HX",
-						indexNo:"214",
-						nodeName:"回箱",
+					type: "post",
+					url: "/statebackfinish",
+					data: {
+						xiangDanID: id,
+						operateFlag: operateFlag,
+						finishTime: result,
+						state: "YS_HX",
+						indexNo: "214",
+						nodeName: "回箱",
 					},
-					async:true,
-					success:function(data){
+					async: true,
+					success: function(data) {
 						var result = eval(data);
-						if(result.result > 0)
-						{
+						if(result.result > 0) {
 							mui.toast("状态反馈成功");
-							setTimeout(mui.openWindow('/stateback'),1500);
-						}
-						else
-						{
+							setTimeout(mui.openWindow('/stateback'), 1500);
+						} else {
 							mui.toast("状态反馈失败");
 						}
 						//alert(result.result);
 					},
-					error:function(){
+					error: function() {
 						mui.alert("系统处理错误");
 					}
 				});
