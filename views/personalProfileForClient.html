@@ -1,0 +1,109 @@
+<!--
+	作者：zst
+	时间：2017-08-10
+	描述：车队个人中心
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <title></title>
+	    <script src="/javascripts/mui.min.js"></script>
+	    <link rel="stylesheet" href="/stylesheets/mui.min.css" />
+	    <link rel="stylesheet" href="/stylesheets/profile.css" />
+	    <script type="text/javascript" charset="utf-8">
+	      	mui.init();
+	    </script>
+	</head>
+	<body>
+		<div class="top-bar">
+			<div class="profilePhoto"><img src="/images/默认头像.png" /></div><br />
+			<span>车队<%= username%></span>
+			<div class="triangle-up"></div>
+		</div>
+		<ul class="mui-table-view mui-table-view-chevron" style="margin-top: 2rem;;">
+			<li class="mui-table-view-cell function-item">
+				<img src="/images/search.png" />
+				<a href="boxsearch" id="search" class="mui-navigate-right">集装箱查询</a>
+			</li>
+			<li class="mui-table-view-cell function-item">
+				<img src="/images/货车.png "/>
+				<a href="stateback" id="state" class="mui-navigate-right">集装箱跟踪</a>
+			</li>
+		</ul>
+		<ul class="mui-table-view mui-table-view-chevron" style="margin-top: 2rem;;">
+			<li class="mui-table-view-cell function-item">
+				<img src="/images/我的订单.png" />
+				<a href="ordercard" id="ordercard" class="mui-navigate-right">打单预约</a>
+			</li>
+			<li class="mui-table-view-cell function-item">
+				<img src="/images/box.png "/>
+				<a href="ordercase" id="ordercase" class="mui-navigate-right">提箱预约</a>
+			</li>
+		</ul>
+		<ul class="mui-table-view mui-table-view-chevron">
+			<li class="mui-table-view-cell function-item">
+				<img src="/images/绑定.png" />
+				<a id="shenfen" class="mui-navigate-right"><%= openid==null || openid=='' ? '绑定' : '解绑' %></a>
+			</li>
+			<li class="mui-table-view-cell function-item">
+				<img src="/images/退出.png" />
+				<a href="logout" class="mui-navigate-right">退出</a>
+				<!--<a href="loginMain" class="mui-navigate-right">退出</a>-->
+			</li>
+		</ul>
+	</body>
+	<script src="/javascripts/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+	    mui.init();
+	      
+		mui.ready(function(){
+			document.getElementById("search").addEventListener("tap",function(event){
+		         mui.openWindow({url:'boxsearch',id:'boxsearch'});
+			})
+//			mui('#search').addEventListener('tap', function(){
+//				mui.openWindow({url:'boxsearch',id:'boxsearch'});
+//			});
+            document.getElementById("state").addEventListener('tap',function(event){
+	             mui.openWindow({url:'stateback',id:'stateback'});
+            })
+//			mui('#state').addEventListener('tap', function(){
+//				mui.openWindow({url:'stateback',id:'stateback'});
+//			});
+//			mui('#ordercard').addEventListener('tap', function(){
+//				mui.openWindow({url:'ordercard',id:'ordercard'});
+//			});
+			document.getElementById("ordercard").addEventListener('tap',function(event){
+	             mui.openWindow({url:'ordercard',id:'ordercard'});
+            })
+//			mui('#ordercase').addEventListener('tap', function(){
+//				mui.openWindow({url:'ordercase',id:'ordercase'});
+//			});
+			document.getElementById("ordercase").addEventListener('tap',function(event){
+	             mui.openWindow({url:'ordercase',id:'ordercase'});
+            })
+			document.getElementById("shenfen").addEventListener('tap', function(){
+							mui.ajax({
+							type:"post",
+							url:"/bindingwx",
+							data:{},
+							async:true,
+							success:function(data){
+								var result = eval(data);
+								if(result.result==1)
+								{
+									if(mui('#shenfen')[0].innerText=='绑定')
+									    mui('#shenfen')[0].innerText='解绑';
+									else
+									    mui('#shenfen')[0].innerText='绑定';
+								}
+							},
+							error:function(){
+								mui.alert(mui('#shenfen').text()+"出现错误");
+							}
+						});
+		});
+		})
+	</script>
+</html>

@@ -1,0 +1,92 @@
+<!--
+	作者：zst
+	时间：2017-08-09
+	描述：管理员个人中心
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <title></title>
+	    <script src="/javascripts/mui.min.js"></script>
+	    <link rel="stylesheet" href="/stylesheets/mui.min.css" />
+	    <link rel="stylesheet" href="/stylesheets/profile.css" />
+	</head>
+	<body>
+		<div class="top-bar">
+			<div class="profilePhoto"><img src="/images/默认头像.png" /></div><br />
+			<span>管理员<%= username %></span>
+			<div class="triangle-up"></div>
+		</div>
+		<ul class="mui-table-view mui-table-view-chevron" style="margin-top: 2rem;;">
+			<li class="mui-table-view-cell function-item">
+				<img src="/images/search.png" />
+				<a href="boxsearch" id="search" class="mui-navigate-right">集装箱查询</a>
+			</li>
+			<li class="mui-table-view-cell function-item">
+				<img src="/images/货车.png "/>
+				<a href="stateback" id="state" class="mui-navigate-right">集装箱跟踪</a>
+			</li>
+			<li class="mui-table-view-cell function-item">
+				<img src="/images/注册.png "/>
+				<a href="registerAudit" id="registerAudit" class="mui-navigate-right">注册审批</a>
+			</li>			
+		</ul>
+		<ul class="mui-table-view mui-table-view-chevron">
+			<li class="mui-table-view-cell function-item">
+				<img src="/images/绑定.png" />
+				<a id="shenfen" class="mui-navigate-right"><%= openid==null || openid=='' ? '绑定' : '解绑' %></a>
+			</li>
+			<li class="mui-table-view-cell function-item">
+				<img src="/images/退出.png" />
+				<a href="logout" class="mui-navigate-right">退出</a>
+				<!--<a href="loginMain" class="mui-navigate-right">退出</a>-->
+			</li>
+		</ul>
+	</body>
+	<script src="/javascripts/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+	    mui.init();
+	      
+	    var openid='';
+		mui.ready(function(){
+			mui('#search').addEventListener('tap', function(){
+				mui.openWindow({url:'boxsearch',id:'boxsearch'});
+			}
+			mui('#state').addEventListener('tap', function(){
+				mui.openWindow({url:'stateback',id:'stateback'});
+			}
+			mui('#state').addEventListener('tap', function(){
+				mui.openWindow({url:'stateback',id:'stateback'});
+			}
+			mui('#registerAudit').addEventListener('tap', function(){
+				mui.openWindow({url:'registerAudit',id:'registerAudit'});
+			}
+			var urlperson=decodeURI(location.search);
+		    var theRequest = new Object();
+		    if (urlperson.indexOf("?") != -1) {
+		        var str = urlperson.substr(1);  
+		        strs = str.split("&");   
+		        for(var i = 0; i < strs.length; i ++) {   
+		        theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);   
+		        }
+		        openid = theRequest['openid'];
+		    }
+		    var oDiv = document.getElementById('shenfen');
+		    var str = 'manager?openid=';
+		    if(openid==1){
+		    	openid=0;
+		    	str+=openid;
+		    	oDiv.setAttribute('href',str);
+		    	oDiv.innerHTML="解绑";
+		    }
+		    else{
+		    	openid=1;
+		    	str+=openid;
+		    	oDiv.setAttribute('href',str);
+		    	oDiv.innerHTML="绑定";
+		    }
+		})
+	</script>
+</html>

@@ -1,0 +1,108 @@
+<!--
+	作者：zst
+	时间：2017-08-09
+	描述：登录主页面
+-->
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="/stylesheets/mui.min.css" rel="stylesheet" />
+		<link href="/stylesheets/index.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<!--主页面容器-->
+		<div class="mui-content-padded contain">
+			<div class="logobar">
+				<img src="/images/logo.png" />
+			</div>
+			<!--主页面内容容器-->
+			<div class="mui-col-xs-9 login">
+				<!--输入框表单-->
+				<form>
+					<div class="mui-input-row">
+						<label><img src="/images/account.png" width="25px;"></label>
+						<input type="text" name="username" class="mui-input-clear" placeholder="请输入用户名" />
+						<span class="mui-icon mui-icon-clear mui-hidden"></span>
+					</div>
+					<div class="mui-input-row">
+						<label><img src="/images/密码.png" width="25px;"></label>
+						<input type="password" name="password" class="mui-input-password" placeholder="请输入密码" />
+					</div>
+				</form>
+				<a id="register" style="float: left;margin-top: 5%;color:#495a80;">立即注册</a>
+				<a id="forgetpw" style="float: right;margin-top: 5%;color:#495a80;">忘记密码?</a>
+				<!--下一步按钮-->
+				<button type="button" id="loginbtn" class="mui-btn mui-btn-block" style="margin-top: 30%;">登录</button>
+			</div>
+		</div>
+		<script src="/javascripts/mui.min.js"></script>
+		<script src="/javascripts/jquery-1.11.1.min.js"></script>		
+		<script type="text/javascript">
+			mui.init()
+			
+			mui.ready(function(){
+				mui('.login').on('tap','#register',function(){
+					mui.openWindow({url:'registerMain',id:'registerMain'});
+				});
+				mui('.login').on('tap','#forgetpw',function(){
+					mui.openWindow({url:'loginForgetPw',id:'loginForgetPw'});
+				});
+				mui('.login').on('tap', '#loginbtn', function() {
+					var check = true;
+					mui("form input").each(function() {
+						//若当前input为空，则alert提醒 
+						if(!this.value || this.value.trim() == "") {
+							var label = this.previousElementSibling;
+							mui.alert("不允许为空");
+							check = false;
+							return false;
+						}
+					}); //校验通过，继续执行业务逻辑 
+					if(check){
+						var username = mui("input[name='username']")[0].value;
+						var password = mui("input[name='password']")[0].value;
+						mui.ajax({
+							type:"post",
+							url:"/userlogin",
+							data:{
+								username:username,
+								password:password,
+							},
+							async:true,
+							success:function(data){
+								var result = eval(data);
+								if(result.result=='-1')
+									mui.alert("用户不存在");
+								else if(result.result=='-2')
+									mui.alert("禁止登陆");
+								else if(result.result=='-3')
+									mui.alert("密码错误");
+								else{
+										if(result.result.UserFlag=="USER"){
+											mui.openWindow({url:'manager',id:'manager'});
+											//mui.openWindow({url:'third',id:'third'});
+										}
+										else if(result.result.UserFlag=="DC"){
+											mui.openWindow({url:'third',id:'third'});
+										}
+										else{
+											mui.openWindow({url:'client',id:'client'});
+										}
+									}							
+							},
+							error:function(){
+								alert("系统服务错误");
+							}
+						});
+					}
+				})
+			})
+		</script>
+	</body>
+
+</html>

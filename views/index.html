@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8">
+	 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><a href="/loginmain">主页</a></h1>-->
+    <h1></h1>
+    <h1><a href="/manager?openid=1">管理员</a></h1>
+    <h1><a href="/third?openid=0">第三方</a></h1>
+    <h1><a href="/client?openid=0">客户</a></h1>-->
+    <h1><a href="/registerAudit">注册审核</a></h1>
+    <h1><a href="/CardAudit">打单审核</a></h1>
+    <h1><a href="/BoxAudit">提箱审核</a></h1>
+    <h1><a href="/ordercase">预约提箱</a></h1>
+    <h1><a href="/ordercard">预约打单</a></h1>
+    <h1><a href="/boxsearch">集装箱查询</a></h1>
+    <h1><a href="/stateback">状态反馈</a></h1>
+    <h1><a href="/DispatchList">箱号识别</a></h1>
+    <script src="/javascripts/jquery-1.11.1.min.js"></script>
+	  <script>
+		$(document).ready(function(){
+			var guid1 = 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+					var r = Math.random() * 16 | 0,
+						v = c == 'x' ? r : (r & 0x3 | 0x8);
+					return v.toString(16);
+			});
+				var oDiv = document.getElementsByTagName('h1')[0];
+				oDiv.innerHTML = '<a href="/service?openid='+guid1+'">服务</a>';
+		})
+	  	
+	  </script>
+  </body>
+</html>
