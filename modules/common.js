@@ -7,7 +7,7 @@ exports.BasicConnect = function(addstring, messagestring,callback){
 	var BasicHttpBinding = require('wcf.js').BasicHttpBinding
 	  , Proxy = require('wcf.js').Proxy
 	  , binding = new BasicHttpBinding({})
-	  , proxy = new Proxy(binding, "http://101.132.79.96:8888/BestLOG80/BestLOGWebApp.svc?wsdl")
+	  , proxy = new Proxy(binding, "http://192.168.100.243:8080/BestLOGWebApp.svc?wsdl")
 	  , message = '<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">' +
 	             '<Header />' +
 	               '<Body>' +
