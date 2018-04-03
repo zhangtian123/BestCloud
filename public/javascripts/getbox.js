@@ -34,9 +34,13 @@ $(document).ready(function(){
 	
 	/*通过侧边栏选择筛选条件*/
 	$("#submit").click(function(){
+		offCanvasWrapper.offCanvas('close'); //关闭菜单栏
+		//		显示loading动画
+		document.getElementById("over").style.display = "block";
+		document.getElementById("layout").style.display = "block";
 		var type = $('input[name="radio"]:checked').val();
-		var begin = $('#begin').text();
-		var end = $('#end').text();
+		var begin = $('#begin').val();
+		var end = $('#end').val();
 		var HBLNO = $('input[name="HBLNO"]').val();
 		var ContainerNo = $('input[name="ContainerNo"]').val();
 		var EIRNO = $('input[name="EIRNO "]').val();
@@ -55,6 +59,9 @@ $(document).ready(function(){
 			},
 			async:true,
 			success:function(data){
+				//				隐藏loading动画
+				document.getElementById("over").style.display = "none";
+				document.getElementById("layout").style.display = "none";
 				currentlist = 0;
 				count = 0;
 				downflag = 0;
@@ -84,6 +91,9 @@ $(document).ready(function(){
 				}
 			},
 			error:function(){
+				//				隐藏loading动画
+				document.getElementById("over").style.display = "none";
+				document.getElementById("layout").style.display = "none";
 				mui.alert("系统处理错误");
 			}
 //			success:function(data){

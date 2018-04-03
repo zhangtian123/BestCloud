@@ -120,7 +120,7 @@
 .centerBackPickup {
 	background-color: white;
 	width: 90%;
-	height: 300px;
+	height: 440px;
 	margin: -80px 0 0 5%;
 	border-radius: 5px;
 	z-index: 99;
@@ -223,4 +223,54 @@
     height: 2.5rem;
     border-radius: 1rem;
     margin: 5px 0px 0px 10px;
+}
+
+
+/*图片*/
+
+.imageBox {
+	position: absolute;
+	width: 80%;
+	height: 10%;
+	margin-left: 20px;
+}
+
+.album {
+	width: 90%;
+	display: flex;
+	height: auto;
+	background: white;
+	min-height: 50px;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	margin: 35% 0 0 15%;
+	position: absolute;
+}
+
+.album>div {
+	width: 25%;
+	height: 25%;
+	position: relative;
+	margin-left: 20px;
+}
+
+.album>div>img:first-child {
+	max-width: 100%;
+	max-height: 90px;
+}
+
+
+/*这是为了delete图标设置的*/
+
+.album>div>img:last-child {
+	position: absolute;
+	width: 20%;
+	height: 20%;
+	margin: -8px 0 0 -8px;
+}
+
+.albumLabel {
+	font-size: 1rem;
+	color: #79797a;
+	padding: 10px 0 0 14%;
 }

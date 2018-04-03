@@ -34,21 +34,31 @@ $(document).ready(function(){
 	
 	/*通过侧边栏选择筛选条件*/
 	$("#submit").click(function(){
-		var HBLNO = $('input[name="HBLNO"]').val();
+		offCanvasWrapper.offCanvas('close'); //关闭菜单栏
+		//		显示loading动画
+		document.getElementById("over").style.display = "block";
+		document.getElementById("layout").style.display = "block";
+		var type = $('input[name="radio"]:checked').val();
+		var begin = $('#begin').val();
+		var end = $('#end').val();
+		var hblno = $('input[name="HBLNO"]').val();
 		var ContainerNo = $('input[name="ContainerNo"]').val();
-		var EIRNO = $('input[name="EIRNO "]').val();
+		var eirno = $('input[name="EIRNO "]').val();
 		//选择时间区间时获取时间
 		//alert(orderno+customsop+sono+hblno);
 		$.ajax({
 			type:"get",
 			url:"/BoxList3",
 			data:{
-				HBLNO:HBLNO,
+				HBLNO:hblno,
 				ContainerNo:ContainerNo,
-				EIRNO:EIRNO,
+				EIRNO:eirno,
 			},
 			async:true,
 			success:function(data){
+				//				隐藏loading动画
+				document.getElementById("over").style.display = "none";
+				document.getElementById("layout").style.display = "none";
 				currentlist = 0;
 				count = 0;
 				downflag = 0;
@@ -78,6 +88,9 @@ $(document).ready(function(){
 				}
 			},
 			error:function(){
+				//				隐藏loading动画
+				document.getElementById("over").style.display = "none";
+				document.getElementById("layout").style.display = "none";
 				mui.alert("系统处理错误");
 			}
 //			success:function(data){
