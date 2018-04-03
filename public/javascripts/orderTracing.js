@@ -294,7 +294,7 @@ var Inner = function(id, XiangDanID, NodeCode, eirtype, eirno, hblno, customerna
 		' <li class="mui-table-view-cell mui-collapse">' +
 		' <a class="mui-navigate-right" id="Detail" href="#">点击查看集装箱状态</a>' +
 		'  <div class="mui-collapse-content">' +
-		'   <canvas id="' + XiangDanID + '" width="310px"></canvas>' +
+		'   <canvas id="' + XiangDanID + '" width="310px" height="150px;"></canvas>' +
 		'</div>' +
 		' </li>' +
 		' </ul>' ;

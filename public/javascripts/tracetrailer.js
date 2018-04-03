@@ -38,13 +38,13 @@ function chk(number) {
 //index 索引号，从1开始
 //col_number 每列有几个状态
 function getStatus(index, row_number, total_number) {
-	if(index != total_number) {
+	if(index != 1) {
 
-		if(index < row_number) {
+		if(index > row_number + 1) {
 			status = 1; //第一种画线情况,右横线
-		} else if(index == row_number) {
+		} else if(index == row_number + 1) {
 			status = 2; //第二种画线情况，右下竖线
-		} else if(index > row_number) {
+		} else if(index <= row_number) {
 			status = 3; //第三种画线情况，左横线
 		}
 	} else {
@@ -56,11 +56,10 @@ function getStatus(index, row_number, total_number) {
 
 function trace(data) {
 	/*首先要根据状态判断到底利用哪种方式来对这个点和线进行渲染*/
-	var tempx = 15;
-	var tempy = 15;
+	var tempx = 20;
+	var tempy = 10;
 	if(data.total_number==2){
-		tempx+=15;
-		tempy+=15;
+		tempx=60;
 	}
 	var windowWidth = document.documentElement.offsetWidth || document.body.offsetWidth;
 	console.log(windowWidth)
@@ -89,10 +88,12 @@ function trace(data) {
 		}
 
 		//圆角矩形尺寸参数
-		var width = widthSpace * 1.3;
-		if(data.total_number==2){//四个字的节点
-			width*=2;
+		var n=1.3;
+		if(data.total_number == 2) { //四个字的节点
+			n = 2;
 		}
+		var width = widthSpace * n;
+		var plu=n+0.5;
 		var height = 0.7 * widthSpace;
 		var radius = 10;
 		if(width < 2 * radius)
@@ -115,8 +116,9 @@ function trace(data) {
 		}
 		if(status == 1) {
 			//第一种画线情况,右横线
-			var x = tempx + (index - 1) * widthSpace * 1.8;
-			var y = tempy;
+			var x = tempx + 2 * widthSpace * plu;
+			x = x - (index - 6) * widthSpace * plu;
+			var y = tempy + 70;
 			if(emptyFlag == false) {
 				var grad = context.createLinearGradient(x, y, x + width, y);
 				grad.addColorStop(0, 'rgb(255,154,118)');
@@ -131,27 +133,27 @@ function trace(data) {
 			context.arcTo(x, y + height, x, y, radius);
 			context.arcTo(x, y, x + width, y, radius);
 			context.closePath();
-			context.moveTo(x + width, y + height / 2);
-			context.lineTo(x + width + widthSpace, y + height / 2)
+			context.moveTo(x , y + height / 2);
+			context.lineTo(x + widthSpace * plu, y + height / 2)
 			context.stroke();
 
 			//绘制文本
 			context.fill()
 			context.fillStyle = textStyle;
 			context.textAlign = "center"
-			context.font = "1.2rem 微软雅黑"
+			context.font = "1rem 微软雅黑"
 			context.fillText(name, x + width / 2, y + 0.7 * height);
 			context.fillStyle = " #79797a";
-			context.font = "0.8rem 微软雅黑" //context.font = "0.2rem 微软雅黑"
+			context.font = "0.7rem 微软雅黑" //context.font = "0.2rem 微软雅黑"
 			var tempIndex = 10;
 			context.fillText(time.substring(0, tempIndex), x + width / 2, y + 1.5 * height);
 			context.fillText(time.substring(tempIndex, time.length), x + width / 2, y + 2 * height)
 
 		} else if(status == 2) {
-			//第二种画线情况，右下竖线
+			//第二种画线情况，右上竖线
 
-			var x = tempx + widthSpace * 5.4;
-			var y = tempy;
+			var x = tempx + widthSpace * plu * 3;
+			var y = tempy + 70;
 			if(emptyFlag == false) {
 				var grad = context.createLinearGradient(x, y, x + width, y);
 				grad.addColorStop(0, 'rgb(255,154,118)');
@@ -172,29 +174,28 @@ function trace(data) {
 			context.lineTo(x + width + 12, y + height / 2)
 			context.stroke();
 			context.moveTo(x + width + 12, y + height / 2);
-			context.lineTo(x + width + 12, y + height / 2 + 70)
+			context.lineTo(x + width + 12, y + height / 2 - 70)
 			context.stroke();
-			context.moveTo(x + width + 12, y + height / 2 + 70);
-			context.lineTo(x + width, y + height / 2 + 70)
+			context.moveTo(x + width + 12, y + height / 2 - 70);
+			context.lineTo(x + width, y + height / 2 - 70)
 			context.stroke();
 
 			//绘制文本
 			context.fill()
 			context.fillStyle = textStyle;
 			context.textAlign = "center"
-			context.font = "1.2rem 微软雅黑"
+			context.font = "1rem 微软雅黑"
 			context.fillText(name, x + width / 2, y + 0.7 * height);
 			context.fillStyle = " #79797a";
-			context.font = "0.8rem 微软雅黑"
+			context.font = "0.7rem 微软雅黑"
 			var tempIndex = 10;
 			context.fillText(time.substring(0, tempIndex), x + width / 2, y + 1.5 * height);
 			context.fillText(time.substring(tempIndex, time.length), x + width / 2, y + 2 * height)
 		} else if(status == 3) {
 			//第三种画线情况，左横线
+			var x = tempx + widthSpace * plu * (index - 1)
+			var y = tempy;
 
-			var x = tempx + widthSpace * 5.4;
-			x = x - (index - 5) * widthSpace * 1.8;
-			var y = tempy + 70;
 			if(emptyFlag == false) {
 				var grad = context.createLinearGradient(x, y, x + width, y);
 				grad.addColorStop(0, 'rgb(255,154,118)');
@@ -209,31 +210,25 @@ function trace(data) {
 			context.arcTo(x, y, x + width, y, radius);
 			context.closePath();
 			context.moveTo(x + width, y + height / 2);
-			context.lineTo(x + width - widthSpace * 1.8, y + height / 2)
+			context.lineTo(x + width - widthSpace * plu, y + height / 2)
 			context.stroke();
 
 			//绘制文本
 			context.fill()
 			context.fillStyle = textStyle;
 			context.textAlign = "center"
-			context.font = "1.2rem 微软雅黑"
+			context.font = "1rem 微软雅黑"
 			context.fillText(name, x + width / 2, y + 0.7 * height);
 			context.fillStyle = " #79797a";
-			context.font = "0.8rem 微软雅黑"
+			context.font = "0.7rem 微软雅黑"
 			var tempIndex = 10;
 			context.fillText(time.substring(0, tempIndex), x + width / 2, y + 1.5 * height);
 			context.fillText(time.substring(tempIndex, time.length), x + width / 2, y + 2 * height)
-		} else if(status==4){
+		} else if(status == 4) {
 			//第五种画线情况，无横线
 			//绘制圆角矩形
-			if(data.total_number==2){//右移动
-				var x = tempx + index*widthSpace * 1.8;
-				var y = tempy;
-			}else{//左移动
-				var x = tempx + widthSpace * 5.4;
-				x = x - (index - 5) * widthSpace * 1.8;
-				var y = tempy + 70;
-			}
+			var x = tempx;
+			var y = tempy;
 			if(emptyFlag == false) {
 				var grad = context.createLinearGradient(x, y, x + width, y);
 				grad.addColorStop(0, 'rgb(255,154,118)');
@@ -252,10 +247,10 @@ function trace(data) {
 			context.fill()
 			context.fillStyle = textStyle;
 			context.textAlign = "center"
-			context.font = "1.2rem 微软雅黑"
+			context.font = "1rem 微软雅黑"
 			context.fillText(name, x + width / 2, y + 0.7 * height);
 			context.fillStyle = " #79797a";
-			context.font = "0.8rem 微软雅黑"
+			context.font = "0.7rem 微软雅黑"
 			var tempIndex = 10;
 			context.fillText(time.substring(0, tempIndex), x + width / 2, y + 1.5 * height);
 			context.fillText(time.substring(tempIndex, time.length), x + width / 2, y + 2 * height)
