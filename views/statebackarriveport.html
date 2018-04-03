@@ -21,8 +21,8 @@
 		<div class="topBack">
 			<div class="statusText">状态：进港完成</div>
 		</div>
-		<form>
-			<div class="centerBackPickup">
+		<form enctype='multipart/form-data' method='post' action='javascript:;'>
+			<div class="centerBack">
 				<!--填写信息-->
 				<div hidden="hidden" id='xiangDanID'>
 					<%= XiangDanID%>
@@ -34,11 +34,15 @@
 					</div>
 					<div class="row">
 						<label class="rowTextPickup">箱号</label>
-						<label class="btnPickup"><%= ContainerNo%></label>
+						<%if(SealNo != "null" ){%>
+							<label class="btnPickup"><%= ContainerNo%></label>
+						<%}%>
 					</div>
 					<div class="row">
 						<label class="rowTextPickup">铅封号</label>
-						<label class="btnPickup"><%= SealNo%></label>
+						<%if(SealNo != "null" ){%>
+							<label class="btnPickup"><%= SealNo%></label>
+						<%}%>
 					</div>
 					<div class="row">
 						<label class="rowTextPickup">尺寸/规格</label>

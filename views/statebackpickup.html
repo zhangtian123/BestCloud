@@ -51,27 +51,36 @@
 						<label class="btnPickup"><%= Remark%></label>
 						<%}%>
 					</div>
-					<div class="row">
+					<!--这个是原设计，跳转到takephoto.html,稍微改了一下-->
+					<!--<div class="row">
 						<label class="rowTextPickup">拍照上传</label>
 						<img id="takephoto" class="image-leave" src="/images/camera.png"><img>
-					</div>
+					</div>-->
 
+					<!--这个与BestLog8公众号的设计相同,但是似乎还存在安卓手机无法选择拍照功能的bug-->
 					<!--<div class="row">
+						<label class="rowTextPickup">照　片</label>
+						<img id="btn" src="/images/camera.png" style="margin: 0px 0 0 20px;"><img>
+						<div class="album" style="width: 90%;margin:25% 0 0 0%;"></div>
+					</div>-->
+
+					<!--这个是按照takephoto.html 的设计 这个在安卓手机上可以实现拍照-->
+					<div class="row">
 						<label class="rowTextPickup">拍照/上传</label>
 						<div style="margin:0rem 0 0 2rem;height: 4rem;">
 							<div class="cameraBtnBackBorder">
-								<div class="cameraBtnBack">
-									<input type="file" class="cameraBtn" capture="camera" accept="image/*" />
+								<div class="cameraBtnBack" id="cameraBtn">
+									<input type="file" id="camera" class="cameraBtn" capture="camera" accept="image/*" onchange="cameraChange()" multiple='multiple' />
 								</div>
 							</div>
-							<div class="AddBtnBackBorder">
+							<div class="AddBtnBackBorder" id="chooseBtn">
 								<div class="AddBtnBack">
-									<input type="file" id="choose" class="addBtn" onchange="showimage()" />
+									<input type="file" id="choose" class="addBtn" onchange="showimage()" multiple='multiple' />
 								</div>
 							</div>
-							<img class="newImg" />
+							<div class="album" style="width: 90%;margin:25% 0 0 -36%;"></div>
 						</div>
-					</div>-->
+					</div>
 
 				</div>
 			</div>
@@ -80,54 +89,7 @@
 				<button id="submit" class="submitInfo">提交</button>
 			</div>
 		</form>
-		<!--<body>
-		<div class="mui-content-padded contain">
-			<div class="register">
-				<form>
-					<div class="mui-input-row status-row" style="border: none;">
-						<label><img src="/images/lights.png" width="25px;"></label>
-						<span>提箱完成</span>
-					</div>
-					<div class="mui-input-row">
-						<label><img src="/images/clock.png" width="25px;"></label>
-						<input id='result' type="text" class="mui-input-clear shortline" placeholder="请选择提箱完成的时间" />
-						<button id='demo1' type="button" data-options='{}' class="vertify btn mui-btn mui-btn-primary">选择</button>
-					</div>
-					<div hidden="hidden" id='xiangDanID'>
-						<%= XiangDanID%>
-					</div>
-					<div class="mui-input-row">
-						<label><img src="/images/box.png" width="25px;"></label>
-						<input id='containerNo' type="text" class="mui-input-clear shortline" placeholder="请输入箱号" />
-					</div>
-					<div class="mui-input-row">
-						<label><img src="/images/edit.png" width="25px;"></label>
-						<input id='sealNo' type="text" class="mui-input-clear shortline" placeholder="请输入封铅号" />
-					</div>
 
-					<div class="mui-card-content2">
-						<div class="item">
-							<span class="item-title"><br><br>尺寸/规格</span>
-							<span style="text-align: left;margin-left: 30px;"><%= ContainerSize%>/<%= ContainerType%></span>
-						</div>
-
-						<div class="item">
-							<span class="item-title"><br>描述</span>
-							<span style="text-align: left;margin-left: 80px;"><%= Remark%><br><br></span>
-						</div>
-					</div>
-					<div class="mui-input-row" style="border: none;height: 12.5rem;">
-						<label><img src="/images/拍照.png" width="25px;"></label>
-						<div class="photo"></div>
-						<button id="takephoto" type="button" class="mui-btn">点击拍照</button>
-					</div>
-
-					<button id="submit" type="button" class="mui-btn mui-btn-block submit" style="margin-top: 1%;">提交</button>
-
-				</form>
-
-			</div>
-		</div>-->
 		<script src="/javascripts/jquery-1.11.1.min.js"></script>
 		<script src="/javascripts/mui.min.js"></script>
 		<script src="/javascripts/mui.picker.min.js"></script>
@@ -195,31 +157,114 @@
 				}
 			})
 
-			$('#submit').click(function() {
-				//				let file = document.getElementById("choose").files[0];
-				//				let formData = new FormData();
-				//				formData.append("avatar", file);
-				//				$.ajax({
-				//					type: 'POST',
-				//					url: '/profile',
-				//					data: formData,
-				//					async: true,
-				//					cache: false,
-				//					contentType: false,
-				//					processData: false,
-				//					success: function(data) {
-				//						var result = eval(data);
-				//						if(result.result > 0) {
-				//							mui.alert("图片上传成功");
-				//						} else {
-				//							mui.alert("系统服务错误-图片上传失败");
-				//						}
-				//					},
-				//					error: function() {
-				//						mui.alert("系统服务错误");
-				//					}
-				//				})
+			var number = 0;
+			function showimage() {
+				let files = document.getElementById("choose").files;
+				var idx = 0;
+				for(var i = 0; i < files.length; i++) {
+					idx++;
+					if(number >= 3) {
+						mui.alert("最多上传三张！");
+						return;
+					}
+					number++;
+					if(window.FileReader) {
+						var reader = new FileReader();
+						file = files[i];
+						reader.readAsDataURL(file);
+						//监听文件读取结束后事件    
+						reader.onloadend = function(e) {
+							//							$(".newImg").attr("src", e.target.result);
+							//							$(".newImg").addClass("newImgstyle");
+							var div = $("<div></div>");
+							div.attr('id', 'div' + idx)
+							var img = $("<img/>");
+							img.attr("src", e.target.result);
+							img.attr("data-action", "zoom")
 
+							div.append(img);
+							var img_delete = $("<img/>");
+							img_delete.attr('id', '' + idx)
+							img_delete.attr('src', "/images/delete.png");
+							img_delete.click(function() {
+								var albums = document.getElementsByClassName('album')[0];
+								var divs = albums.getElementsByTagName('div');
+								albums.removeChild(albums.querySelector('#div' + this.id))
+								document.getElementById('cameraBtn').style.zIndex = ""
+								document.getElementById('chooseBtn').style.zIndex = ""
+								number--;
+							})
+							div.append(img_delete);
+							$(".album").append(div);
+							$(".album").show();
+
+						};
+					}
+					console.log(number)
+					if(number >= 3) {
+						document.getElementById('cameraBtn').style.zIndex = "-99999"
+						document.getElementById('chooseBtn').style.zIndex = "-99999"
+					} else {
+						document.getElementById('cameraBtn').style.zIndex = ""
+						document.getElementById('chooseBtn').style.zIndex = ""
+					}
+				}
+			}
+
+			function cameraChange() {
+				var files = document.getElementById("camera").files;
+				var idx = 0;
+				for(var i = 0; i < files.length; i++) {
+					idx++;
+					if(number >= 3) {
+						mui.alert("最多上传三张！");
+						return;
+					}
+					number++;
+					if(window.FileReader) {
+						var reader = new FileReader();
+						file = files[i];
+						reader.readAsDataURL(file);
+						//监听文件读取结束后事件    
+						reader.onloadend = function(e) {
+							//							$(".newImg").attr("src", e.target.result);
+							//							$(".newImg").addClass("newImgstyle");
+							var div = $("<div></div>");
+							div.attr('id', 'div' + idx)
+							var img = $("<img/>");
+							img.attr("src", e.target.result);
+							img.attr("data-action", "zoom")
+
+							div.append(img);
+							var img_delete = $("<img/>");
+							img_delete.attr('id', '' + idx)
+							img_delete.attr('src', "/images/delete.png");
+							img_delete.click(function() {
+								var albums = document.getElementsByClassName('album')[0];
+								var divs = albums.getElementsByTagName('div');
+								albums.removeChild(albums.querySelector('#div' + this.id))
+								document.getElementById('cameraBtn').style.zIndex = ""
+								document.getElementById('chooseBtn').style.zIndex = ""
+								number--;
+							})
+							div.append(img_delete);
+							$(".album").append(div);
+							$(".album").show();
+
+						};
+					}
+					console.log(number)
+					if(number >= 3) {
+						document.getElementById('cameraBtn').style.zIndex = "-99999"
+						document.getElementById('chooseBtn').style.zIndex = "-99999"
+					} else {
+						document.getElementById('cameraBtn').style.zIndex = ""
+						document.getElementById('chooseBtn').style.zIndex = ""
+					}
+				}
+			}
+
+			$('#submit').click(function() {
 				var result = mui('#result')[0].value;
 				id = mui('#xiangDanID')[0].innerHTML;
 				var takephoto = mui('#takephoto')[0].value;
@@ -253,81 +298,6 @@
 						mui.alert("系统处理错误");
 					}
 				});
-			})
-
-			function showimage() {
-				let file = document.getElementById("choose").files[0];
-				if(window.FileReader) {
-					var reader = new FileReader();
-					reader.readAsDataURL(file);
-					//监听文件读取结束后事件    
-					reader.onloadend = function(e) {
-						$(".newImg").attr("src", e.target.result);
-						$(".newImg").addClass("newImgstyle");
-					};
-				}
-			}
-
-			function handle() {
-				let file = document.getElementById("choose").files[0];
-				let formData = new FormData();
-				formData.append("avatar", file);
-				$.ajax({
-					type: 'POST',
-					url: '/profile',
-					data: formData,
-					async: false,
-					cache: false,
-					contentType: false,
-					processData: false,
-					success: function(data) {
-						var result = eval(data);
-						if(result.result > 0) {
-
-							var result = mui('#result')[0].value;
-							id = mui('#xiangDanID')[0].innerHTML;
-							var takephoto = mui('#takephoto')[0].value;
-							var containerNo = mui('#containerNo')[0].value;
-							var sealNo = mui('#sealNo')[0].value;
-							mui.ajax({
-								type: "post",
-								url: "/statebackpickup",
-								data: {
-									xiangDanID: id,
-									accesList: takephoto,
-									containerNo: containerNo,
-									sealNo: sealNo,
-									finishTime: result,
-									state: "YS_TX",
-									nodeName: "提箱",
-									indexNo: "210",
-								},
-								async: false,
-								success: function(data) {
-									var result = eval(data);
-									if(result.result > 0) {
-										mui.toast("状态反馈成功");
-										setTimeout(mui.openWindow('/stateback'), 1500);
-									} else {
-										mui.toast("状态反馈失败");
-									}
-									//alert(result.result);
-								},
-								error: function() {
-									mui.alert("系统处理错误");
-								}
-							});
-						} else {
-							mui.alert("系统服务错误");
-						}
-					},
-					error: function() {
-						mui.alert("系统服务错误");
-					}
-				})
-			}
-			mui('#takephoto')[0].addEventListener('tap', function() {
-				setTimeout(mui.openWindow('/takephoto'), 1500);
 			})
 		</script>
 	</body>
