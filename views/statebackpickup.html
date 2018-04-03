@@ -158,16 +158,11 @@
 			})
 
 			var number = 0;
+			var idx = 0;
+
 			function showimage() {
 				let files = document.getElementById("choose").files;
-				var idx = 0;
 				for(var i = 0; i < files.length; i++) {
-					idx++;
-					if(number >= 3) {
-						mui.alert("最多上传三张！");
-						return;
-					}
-					number++;
 					if(window.FileReader) {
 						var reader = new FileReader();
 						file = files[i];
@@ -176,8 +171,15 @@
 						reader.onloadend = function(e) {
 							//							$(".newImg").attr("src", e.target.result);
 							//							$(".newImg").addClass("newImgstyle");
+							if(number >= 3) {
+								mui.alert("最多上传三张！");
+								return;
+							}
+							number++;
+							idx++;
 							var div = $("<div></div>");
 							div.attr('id', 'div' + idx)
+							console.log("id " + idx)
 							var img = $("<img/>");
 							img.attr("src", e.target.result);
 							img.attr("data-action", "zoom")
@@ -190,6 +192,7 @@
 								var albums = document.getElementsByClassName('album')[0];
 								var divs = albums.getElementsByTagName('div');
 								albums.removeChild(albums.querySelector('#div' + this.id))
+								console.log("delete_id " + this.id)
 								document.getElementById('cameraBtn').style.zIndex = ""
 								document.getElementById('chooseBtn').style.zIndex = ""
 								number--;
@@ -213,14 +216,7 @@
 
 			function cameraChange() {
 				var files = document.getElementById("camera").files;
-				var idx = 0;
 				for(var i = 0; i < files.length; i++) {
-					idx++;
-					if(number >= 3) {
-						mui.alert("最多上传三张！");
-						return;
-					}
-					number++;
 					if(window.FileReader) {
 						var reader = new FileReader();
 						file = files[i];
@@ -229,8 +225,15 @@
 						reader.onloadend = function(e) {
 							//							$(".newImg").attr("src", e.target.result);
 							//							$(".newImg").addClass("newImgstyle");
+							if(number >= 3) {
+								mui.alert("最多上传三张！");
+								return;
+							}
+							number++;
+							idx++;
 							var div = $("<div></div>");
 							div.attr('id', 'div' + idx)
+							console.log("id " + idx)
 							var img = $("<img/>");
 							img.attr("src", e.target.result);
 							img.attr("data-action", "zoom")
@@ -243,6 +246,7 @@
 								var albums = document.getElementsByClassName('album')[0];
 								var divs = albums.getElementsByTagName('div');
 								albums.removeChild(albums.querySelector('#div' + this.id))
+								console.log("delete_id " + this.id)
 								document.getElementById('cameraBtn').style.zIndex = ""
 								document.getElementById('chooseBtn').style.zIndex = ""
 								number--;
