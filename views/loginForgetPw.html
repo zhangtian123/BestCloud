@@ -3,6 +3,11 @@
 	时间：2017-08-09
 	描述：登录之忘记密码
 -->
+<!--
+	作者：anna
+	时间：2018-04-03
+	描述：UI优化
+-->
 <!doctype html>
 <html>
 
@@ -10,127 +15,133 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="/stylesheets/mui.min.css" rel="stylesheet" />
+		<link href="/stylesheets/mui.min.register_login.css" rel="stylesheet" />
 		<link href="/stylesheets/index.css" rel="stylesheet" />
 	</head>
 
 	<body>
 		<!--主页面容器-->
-		<div class="mui-content-padded  contain">
-			<div class="logobar">
-				<img src="/images/logo.png" />
-			</div>
-			<!--主页面内容容器-->
-			<div class="mui-col-xs-9 login">
-				<!--输入框表单-->
-				<form>
-					<div class="mui-input-row">
-						<label><img src="/images/account.png" width="25px;"></label>
-						<input type="text" name="username" id="username" class="mui-input-clear" placeholder="请输入用户名" />
-						<span class="mui-icon mui-icon-clear mui-hidden"></span>
-					</div>
-					<div class="mui-input-row">
-						<label><img src="/images/邮箱.png"></label>
-						<input type="text" name="email" id="email" class="mui-input-clear" placeholder="请输入邮箱" onkeyup="registervalidate()"/>
-						<span class="mui-icon mui-icon-clear mui-hidden"></span>
-					</div>
-					<div class="mui-input-row">
-						<label><img src="/images/验证码验证.png" style="width: 45px;"></label>
-						<input type="text" name="ps" id="ps" placeholder="请输入验证码" />
-						<button type="button" id="getpassbtn" class="vertify mui-btn mui-btn-primary">获取验证码</button>
-					</div>
-					<div id="new_atteninfo1"><p class="info"></p></div>
-				</form>
-				<!--下一步按钮-->
-				<button type="button" id="surebtn" class="mui-btn mui-btn-block" style="margin-top: 25%;">确定</button>
-			</div>
+		<!--<div class="mui-content-padded  contain">-->
+		<div class="logo" style="margin-bottom: 0px;">
+			<img src="/images/logo.jpg" />
+			<p style="font-family: '微软雅黑'; font-size: 20px; margin-top: 1.5rem;">佰信国际物流协同管理平台</p>
 		</div>
+		<!--主页面内容容器-->
+		<div class="mui-col-xs-9 login">
+			<!--输入框表单-->
+			<form>
+				<div class="mui-input-row" style="margin-top: 2.8125rem;">
+					<label><img src="/images/user.png"></label>
+					<input type="text" name="username" id="username" class="mui-input-clear" placeholder="请输入用户名" />
+					<span class="mui-icon mui-icon-clear mui-hidden"></span>
+				</div>
+				<div class="mui-input-row">
+					<label><img src="/images/phone.png"></label>
+					<input type="text" name="mobileNo" id="mobileNo" class="mui-input-clear" placeholder="请输入手机号" onkeyup="registervalidate()" />
+					<!--<span class="mui-icon mui-icon-clear mui-hidden"></span>-->
+				</div>
+				<div class="mui-input-row">
+					<label><img src="/images/code.png" style="width:20px; height: 20px; margin-bottom: 5px; margin-top: 5px;"></label>
+					<input type="text" class="mui-input-code" name="ps" id="ps" placeholder="请输入验证码" />
+					<button type="button" id="getpassbtn" class="vertify mui-btn mui-btn-primary">获取验证码</button>
+				</div>
+				<div class="mui-input-row">
+					<label id="密码"><img src="/images/password.png"></label>
+					<input type="password" name="newpassword" class="mui-input-password" placeholder="请输入新密码" />
+				</div>
+				<div id="new_atteninfo1">
+					<p class="info"></p>
+				</div>
+			</form>
+			<!--提交按钮-->
+			<button type="button" id="submit" class="mui-btn mui-btn-block" style="margin-top: 25%;">提交</button>
+		</div>
+		<!--</div>-->
 		<script src="/javascripts/jquery-1.11.1.min.js"></script>
 		<script src="/javascripts/mui.min.js"></script>
 		<script type="text/javascript">
 			mui.init()
-			var Identify="";
-			
-			function registervalidate(){
-		        var status=0;
-		        var emailaddress = mui("#email")[0].value;
-		        var szReg=/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
-		        if(szReg.test(emailaddress)) {
-		            status=1;
-		            document.getElementById("new_atteninfo1").innerHTML="";
-		            document.getElementById("getpassbtn").disabled = false;
-		        }
-		        else {
-		            document.getElementById("new_atteninfo1").innerHTML = "<font color='#FF8C69'>邮箱格式格式错误</font>";
-		        }
-		    }
-			
-			mui.ready(function(){
+			var Identify = "";
+
+			function registervalidate() {
+				var status = 0;
+				var emailaddress = mui("#email")[0].value;
+				var szReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+				if(szReg.test(emailaddress)) {
+					status = 1;
+					document.getElementById("new_atteninfo1").innerHTML = "";
+					document.getElementById("getpassbtn").disabled = false;
+				} else {
+					document.getElementById("new_atteninfo1").innerHTML = "<font color='#FF8C69'>邮箱格式格式错误</font>";
+				}
+			}
+
+			mui.ready(function() {
 				document.getElementById("getpassbtn").disabled = true;
-				
-				mui('.login').on('tap', '#getpassbtn', function(){
+
+				mui('.login').on('tap', '#getpassbtn', function() {
 					var emailaddress = mui("#email")[0].value;
 					mui.ajax({
-						type:"post",
-						url:"/identifyCode",
-						data:{
-							emailaddress:emailaddress,
+						type: "post",
+						url: "/identifyCode",
+						data: {
+							emailaddress: emailaddress,
 						},
-						async:true,
-						success:function(data){
+						async: true,
+						success: function(data) {
 							var result = eval(data).result;
 							alert(result);
 							Identify = result;
-	//						if(result.result=='1'){}
+							//						if(result.result=='1'){}
 						},
-						error:function(){
+						error: function() {
 							mui.alert("系统服务错误");
 						}
 					});
 				})
-				
-				mui('.login').on('tap', '#surebtn', function() {
+
+				mui('.login').on('tap', '#submit', function() {
 					var check = true;
 					mui("#inputinfo input").each(function() {
-					//若当前input为空，则alert提醒 
-					if(!this.value || this.value.trim() == "") {
-						var label = this.previousElementSibling;
-						mui.alert("不允许为空");
-						check = false;
-						return false;
-					}
+						//若当前input为空，则alert提醒 
+						if(!this.value || this.value.trim() == "") {
+							var label = this.previousElementSibling;
+							mui.alert("不允许为空");
+							check = false;
+							return false;
+						}
 					}); //校验通过，继续执行业务逻辑 
-					if(check){
+					if(check) {
 						var email = mui("#email")[0].value;
 						var username = mui("#username")[0].value;
 						var ps = mui("#ps")[0].value;
-						if(ps!=Identify){mui.alert("验证码错误");}
-						else
-						{
+						if(ps != Identify) {
+							mui.alert("验证码错误");
+						} else {
 							mui.ajax({
-								type:"get",
-								url:"/userForget",
-								data:{
-									email:email,
-									username:username,
+								type: "get",
+								url: "/userForget",
+								data: {
+									email: email,
+									username: username,
 								},
-								async:true,
-								success:function(data){
+								async: true,
+								success: function(data) {
 									var result = eval(data);
-									if(result.result=='1')
-									    mui.openWindow('/loginSetPw');
-									else if(result.result=='0')
+									if(result.result == '1')
+										mui.openWindow('/loginSetPw');
+									else if(result.result == '0')
 										mui.alert("用户名或邮箱不匹配");
 								},
-								error:function(){
+								error: function() {
 									alert("系统服务错误");
 								}
 							});
 						}
-						
+
 					}
 				})
-				
+
 			})
 		</script>
 	</body>
