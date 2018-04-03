@@ -277,53 +277,53 @@
 //			'<div   class="mui-card content-item">'+
 						'<!--页眉，放置标题-->' + '<div class="information">' +
 					'<div class="mui-card-header imp-color">集装箱号</div>' +
-					'<div class="mui-card-header imp-color share-title-id">'+id+'</div></div>'+
+					'<div class="mui-card-header imp-color share-title-id">'+(id==null?'':id)+'</div></div>'+
 						'<input type="hidden" value="'+time+'"/>'+
 						'<input class="getXiangDanID" type="hidden" id="'+nodecode+'" value="'+xiangdanID+'"/>'+
 						'<div class="ticket-style"><div class="circle-l"></div><div class="dashLine"></div><div class="circle-r"></div></div>' +
 						'<div class="mui-card-content">'+
 					'<div class="item">'+
 						'<span class="item-title">EIR类型/NO</span>'+
-						'<span class="right">'+eirtype+'/'+eirno+'</span>'+
-					'</div>'+
-					'<div class="item">'+
-						'<span class="item-title">提单号</span>'+
-						'<span class="right">'+hblno+'</span>'+
-					'</div>'+
-					'<div class="item">'+
-						'<span class="item-title">用箱人/箱主</span>'+
-						'<span class="right">'+customername+'/'+containerowner+'</span>'+
-					'</div>'+
-					'<div class="item">'+
-						'<span class="item-title">船名/船次</span>'+
-						'<span class="right">'+vessel+'/'+voyno+'</span>'+
-					'</div>'+
-					'<div class="item">'+
-						'<span class="item-title">封铅号</span>'+
-						'<span class="right">'+sealno+'</span>'+
-					'</div>'+
-					'<div class="item">'+
-						'<span class="item-title">尺寸/规格</span>'+
-						'<span class="right">'+containersize+'/'+containertype+'</span>'+
-					'</div>'+
-					'<div class="item">'+
-						'<span class="item-title">司机/电话</span>'+
-						'<span class="right">'+drivername+'/'+drivertel+'</span>'+
-					'</div>'+
-					'<div class="item">'+
-					'	<span class="item-title">车队</span>'+
-						'<span class="right">'+truckcompany+'</span>'+
-					'</div>'+
-					'<div class="item">'+
-						'<span class="item-title">堆场</span>'+
-						'<span class="right">'+yard+'</span>'+
+						'<span class="right">' + (eirtype==null?'':eirtype) + (eirno==null?'':('/'+eirno))  + '</span>' +
+		'</div>' +
+		'<div class="item">' +
+		'<span class="item-title">提单号</span>' +
+		'<span class="right">' + (hblno==null?'':hblno) + '</span>' +
+		'</div>' +
+		'<div class="item">' +
+		'<span class="item-title">用箱人/箱主</span>' +
+		'<span class="right">' + (customername==null?'':customername) + (containerowner==null?'':('/'+containerowner)) + '</span>' +
+		'</div>' +
+		'<div class="item">' +
+		'<span class="item-title">船名/船次</span>' +
+		'<span class="right">' + (vessel==null?'':vessel) + (voyno==null?'':('/' + voyno) )+ '</span>' +
+		'</div>' +
+		'<div class="item">' +
+		'<span class="item-title">封铅号</span>' +
+		'<span class="right">' + (sealno==null?'':sealno) + '</span>' +
+		'</div>' +
+		'<div class="item">' +
+		'<span class="item-title">尺寸/规格</span>' +
+		'<span class="right">' + (containersize==null?'':containersize) + (containertype==null?'':('/' + containertype ))+ '</span>' +
+		'</div>' +
+		'<div class="item">' +
+		'<span class="item-title">司机/电话</span>' +
+		'<span class="right">' + (drivername==null?'':drivername) + (drivertel==null?'':('/' + drivertel)) + '</span>' +
+		'</div>' +
+		'<div class="item">' +
+		'	<span class="item-title">车队</span>' +
+		'<span class="right">' + (truckcompany==null?'':truckcompany) + '</span>' +
+		'</div>' +
+		'<div class="item">' +
+		'<span class="item-title">堆场</span>' +
+		'<span class="right">' + (yard==null?'':yard) + '</span>' +
 					'</div></div>'+
 					'<div class="ticket-style"   style="margin-top:2px;"><div class="circle-l"></div><div class="dashLine"></div><div class="circle-r"></div></div>' +
 						'<!--内容区-->'+
 			          '  <div class="mui-collapse-content">'+
 					     '   <canvas id="'+xiangdanID+'" width="310px" height="70px"></canvas>'+
 						'</div>'+
-			        '<center style="margin-top:20px;">'+
+			        '<center>'+
 						 '<button id="agree" type="button" style="width:8rem;" class="mui-btn mui-btn-outlined deskbutton">接受提箱</button>' +
 						 '<button id="reject" type="button" style="margin-left:10px;width:8rem;" class="mui-btn mui-btn-outlined deskbutton">驳回提箱</button>' +
 			       '</center>';
