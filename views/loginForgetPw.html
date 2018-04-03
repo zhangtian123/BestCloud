@@ -37,7 +37,7 @@
 				</div>
 				<div class="mui-input-row">
 					<label><img src="/images/phone.png"></label>
-					<input type="text" name="mobileNo" id="mobileNo" class="mui-input-clear" placeholder="请输入手机号" onkeyup="registervalidate()" />
+					<input type="text" name="mobileNo" id="mobileNo" class="mui-input-clear" placeholder="请输入手机号" onfocusout="registervalidate()" />
 					<!--<span class="mui-icon mui-icon-clear mui-hidden"></span>-->
 				</div>
 				<div class="mui-input-row">
@@ -65,34 +65,34 @@
 
 			function registervalidate() {
 				var status = 0;
-				var emailaddress = mui("#email")[0].value;
-				var szReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
-				if(szReg.test(emailaddress)) {
-					status = 1;
-					document.getElementById("new_atteninfo1").innerHTML = "";
-					document.getElementById("getpassbtn").disabled = false;
-				} else {
-					document.getElementById("new_atteninfo1").innerHTML = "<font color='#FF8C69'>邮箱格式格式错误</font>";
+				var mobileNo = $("input[name='mobileNo']").val();
+				var szReg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+				if(mobileNo != '') {
+					if(szReg.test(mobileNo)) {
+						status = 1;
+						document.getElementById("new_atteninfo1").innerHTML = "";
+						document.getElementById("getpassbtn").disabled = false;
+					} else {
+						document.getElementById("new_atteninfo1").innerHTML = "<font color='#df3c01'>手机号格式错误</font>";
+					}
 				}
 			}
 
 			mui.ready(function() {
 				document.getElementById("getpassbtn").disabled = true;
-
 				mui('.login').on('tap', '#getpassbtn', function() {
-					var emailaddress = mui("#email")[0].value;
+					var mobileNo = mui("#mobileNo")[0].value;
 					mui.ajax({
 						type: "post",
 						url: "/identifyCode",
 						data: {
-							emailaddress: emailaddress,
+							mobileNo: mobileNo,
 						},
 						async: true,
 						success: function(data) {
 							var result = eval(data).result;
 							alert(result);
 							Identify = result;
-							//						if(result.result=='1'){}
 						},
 						error: function() {
 							mui.alert("系统服务错误");
@@ -112,7 +112,7 @@
 						}
 					}); //校验通过，继续执行业务逻辑 
 					if(check) {
-						var email = mui("#email")[0].value;
+						var mobileNo = mui("#mobileNo")[0].value;
 						var username = mui("#username")[0].value;
 						var ps = mui("#ps")[0].value;
 						if(ps != Identify) {
@@ -122,7 +122,7 @@
 								type: "get",
 								url: "/userForget",
 								data: {
-									email: email,
+									mobileNo: mobileNo,
 									username: username,
 								},
 								async: true,
@@ -138,7 +138,6 @@
 								}
 							});
 						}
-
 					}
 				})
 
