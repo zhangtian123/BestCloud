@@ -890,44 +890,6 @@ router.get('/BoxList4', function(req, res, next) {
 			flag++;
 		}
 	}
-	//	if(req.query.HBLNO || req.query.containerNo || req.query.EIRNO )
-	//	{
-	//		var flag=0;
-	//		if(req.query.HBLNO!="" && typeof(req.query.HBLNO)!="undefined")
-	//		{
-	//			flag++;
-	//			predicate+="HBLNO==@0";
-	//			values +=req.query.HBLNO;
-	//		}
-	//		if(req.query.containerNo!="" && typeof(req.query.containerNo)!="undefined")
-	//		{
-	//			if(flag==0)
-	//			{
-	//				predicate+="containerNo==@0";
-	//				values +=req.query.containerNo;
-	//			}
-	//			else
-	//			{
-	//				predicate+="&&containerNo==@"+flag;
-	//				values +=","+req.query.containerNo;
-	//			}
-	//			flag++;
-	//		}
-	//		if(req.query.EIRNO!="" && typeof(req.query.EIRNO)!="undefined")
-	//		{
-	//			if(flag==0)
-	//			{
-	//				predicate+="EIRNO==@0";
-	//				values +=req.query.EIRNO;
-	//			}
-	//			else
-	//			{
-	//				predicate+="&&EIRNO==@"+flag;
-	//				values +=","+req.query.EIRNO;
-	//			}
-	//			flag++;
-	//		}
-	//	}
 	console.log(predicate);
 	console.log(values);
 	box.BoxList(predicate, values, 0, 100, "XiangDanID", 0, function(result) {
@@ -1060,14 +1022,6 @@ router.get('/GetDispatchList', function(req, res, next) {
 
 	var predicate = "";
 	var values = "";
-	//	console.log(req.query);
-	//	var flag=0;
-	//
-	//	console.log(predicate);
-	//	console.log(values);
-	//	DispatchList.DispatchList(predicate,values,0,100,"DispatchID",0,function(result){
-	//		res.send({result:result});
-	//	})
 	if(req.query.code) {
 		request.get({
 			url: 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxf45ab4faa6dbb5fe&secret=22708990c65541dca36376fb9ed13ec6&code=' + req.query.code + '&grant_type=authorization_code',
