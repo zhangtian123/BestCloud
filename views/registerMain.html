@@ -112,7 +112,7 @@
 					//若当前input为空，则alert提醒 
 					if(!this.value || this.value.trim() == "") {
 						var label = this.previousElementSibling;
-						mui.alert("不允许为空");
+						mui.alert(label.id + "不允许为空");
 						check = false;
 						return false;
 					}

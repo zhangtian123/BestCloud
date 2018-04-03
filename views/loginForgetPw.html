@@ -31,17 +31,17 @@
 			<!--输入框表单-->
 			<form>
 				<div class="mui-input-row" style="margin-top: 2.8125rem;">
-					<label><img src="/images/user.png"></label>
+					<label id="用户名"><img src="/images/user.png"></label>
 					<input type="text" name="username" id="username" class="mui-input-clear" placeholder="请输入用户名" />
 					<span class="mui-icon mui-icon-clear mui-hidden"></span>
 				</div>
 				<div class="mui-input-row">
-					<label><img src="/images/phone.png"></label>
+					<label id="手机号"><img src="/images/phone.png"></label>
 					<input type="text" name="mobileNo" id="mobileNo" class="mui-input-clear" placeholder="请输入手机号" onfocusout="registervalidate()" />
 					<!--<span class="mui-icon mui-icon-clear mui-hidden"></span>-->
 				</div>
 				<div class="mui-input-row">
-					<label><img src="/images/code.png" style="width:20px; height: 20px; margin-bottom: 5px; margin-top: 5px;"></label>
+					<label id="验证码"><img src="/images/code.png" style="width:20px; height: 20px; margin-bottom: 5px; margin-top: 5px;"></label>
 					<input type="text" class="mui-input-code" name="ps" id="ps" placeholder="请输入验证码" />
 					<button type="button" id="getpassbtn" class="vertify mui-btn mui-btn-primary">获取验证码</button>
 				</div>
@@ -106,7 +106,7 @@
 						//若当前input为空，则alert提醒 
 						if(!this.value || this.value.trim() == "") {
 							var label = this.previousElementSibling;
-							mui.alert("不允许为空");
+							mui.alert(label.id + "不允许为空");
 							check = false;
 							return false;
 						}
