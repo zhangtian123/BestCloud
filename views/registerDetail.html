@@ -7,82 +7,121 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <title></title>
     <script src="/javascripts/mui.min.js"></script>
     <link href="/stylesheets/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="/stylesheets/base.css" />
-    <link rel="stylesheet" type="text/css" href="/stylesheets/mui.picker.min.css" />
+    <link rel="stylesheet" href="/stylesheets/base.css"/>
+    <link rel="stylesheet" href="/stylesheets/registerDetail.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mui.picker.min.css"/>
     <script type="text/javascript" charset="utf-8">
-      	mui.init();
+        mui.init();
     </script>
 </head>
 <body>
 <!-- 主页面容器 -->
 <div class="mui-inner-wrap">
-<!-- 主页面内容容器 -->
-    <div class="mui-content mui-scroll-wrapper" style="background-color: #FFFFFF;">
-    	<div class="mui-scroll detailcontent">
-        <!-- 主界面具体展示内容 -->
-			<!--页眉，放置标题-->
-			<div class="mui-card-header" style="position: relative;">
-				<img src="/images/account.png" width="25px;">
-				<span class="positioncontrol">用户名：<%= UserName%></span>
-			</div>
-			<!--内容区-->
-			<div class="mui-card-content" style="text-align: center;">
-				<div class="item">
-					<span class="item-title">企业税号</span>
-					<span><%= TaxNo%></span>
-				</div>
-				<div class="item">
-					<span class="item-title">企业中文名</span>
-					<span><%= NameC%></span>
-				</div>
-				<div class="item">
-					<span class="item-title">企业英文名</span>
-					<span><%= NameE%></span>
-				</div>
-				<div class="item">
-					<span class="item-title">企业中文地址</span>
-					<span><%= Address%></span>
-				</div>
-				<div class="item">
-					<span class="item-title">企业英文地址</span>
-					<span><%= AddressEN%></span>
-				</div>
-				<div class="item">
-					<span class="item-title">企业邮箱</span>
-					<span><%= Email%></span>
-				</div>
-				<div class="item">
-					<span class="item-title">企业资质材料</span>
-					<div class="mui-card">
-	<div class="mui-card-content"><img src="../<%- FilePath%>" style="max-width:100%;max-height: 100%;" /></div>
-</div>
-<!--<ul class="mui-table-view">
-    <li class="mui-table-view-cell mui-media">
-        <a href="javascript:;">
-            <img class="mui-media-object mui-pull-left" src="../<%- FilePath%>">
-        </a>
-    </li>
-    </ul>-->
-					<!--<div class="photobar" style="height: 10vw;widows: 20;"><img src="../<%- FilePath%>"></div>-->
-				</div><br>
-				<div class="buttonbar">
-					<button type="button" class="mui-btn mui-btn-primary">通过</button>
-					<button type="button" class="mui-btn mui-btn-primary">驳回</button>
-				</div>
-			</div>
-	    </div>
-    </div>  
+    <!-- 主页面内容容器 -->
+    <div class="mui-content mui-scroll-wrapper" style="background-color: #EFEFEF;">
+        <div class="mui-scroll detailcontent" style="margin:0;width:100%;">
+            <div class="detail-content-top-background">
+                <p class="detail-content-username">用户名&nbsp;&nbsp;&nbsp;&nbsp;Xena</p>
+            </div>
+            <div class="detail-content-detailed-info">
+                <div class="detail-content-item">
+                    <div class="detail-content-item-line">
+                        企业名称
+                    </div>
+                    <div class="detail-content-item-line">
+                        <div class="detail-content-item-line-title">
+                            中文
+                        </div>
+                        <div class="detail-content-item-line-content">
+                            xxxxxxxxxxxxxxxxxxxx
+                        </div>
+                    </div>
+                    <div class="detail-content-item-line">
+                        <div class="detail-content-item-line-title">
+                            英文
+                        </div>
+                        <div class="detail-content-item-line-content">
+                            xxxxxxxxxxxxxxxxxxxx
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-content-item">
+                    <div class="detail-content-item-line">
+                        企业地址
+                    </div>
+                    <div class="detail-content-item-line">
+                        <div class="detail-content-item-line-title">
+                            中文
+                        </div>
+                        <div class="detail-content-item-line-content">
+                            xxxxxxxxxxxxxxxxxxxx
+                        </div>
+                    </div>
+                    <div class="detail-content-item-line">
+                        <div class="detail-content-item-line-title">
+                            英文
+                        </div>
+                        <div class="detail-content-item-line-content">
+                            xxxxxxxxxxxxxxxxxxxx
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-content-item">
+                    <div class="detail-content-item-line">
+                        其他信息
+                    </div>
+                    <div class="detail-content-item-line">
+                        <div class="detail-content-item-line-title">
+                            纳税号
+                        </div>
+                        <div class="detail-content-item-line-content">
+                            xxxxxxxxxxxxxxxxxxxx
+                        </div>
+                    </div>
+                    <div class="detail-content-item-line">
+                        <div class="detail-content-item-line-title">
+                            企业邮箱
+                        </div>
+                        <div class="detail-content-item-line-content">
+                            xxxxxxxxxxxxxxxxxxxx
+                        </div>
+                    </div>
+                    <div class="detail-content-item-line">
+                        资质信息
+                    </div>
+                    <div class="detail-content-item-line images-container">
+                        <div class="image-licence-container">
+                            <img src="/images/licence.jpg" alt="营业执照" class="image-licence">
+                        </div>
+                        <div class="image-licence-container">
+                            <img src="/images/licence.jpg" alt="营业执照" class="image-licence">
+                        </div>
+                        <div class="image-licence-container">
+                            <img src="/images/licence.jpg" alt="营业执照" class="image-licence">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-content-button-group">
+                <button>通过</button>
+                <button>驳回</button>
+            </div>
+        </div>
+    </div>
+
+
     <div class="mui-off-canvas-backdrop"></div>
 </div>
 <script src="/javascripts/jquery-1.11.1.min.js"></script>
 <script src="/javascripts/mui.picker.min.js"></script>
 <!--<script src="/javascripts/registerDetail.js"></script>-->
 <script type="text/javascript">
-	mui('.mui-scroll-wrapper').scroll();
+    mui('.mui-scroll-wrapper').scroll();
 </script>
 </body>
 </html>
