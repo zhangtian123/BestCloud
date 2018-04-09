@@ -5,142 +5,149 @@
 -->
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-    <title><%= title%></title>
-    <script src="/javascripts/mui.min.js"></script>
-    <link rel="stylesheet" href="/stylesheets/mui.min.css"/>
-    <link rel="stylesheet" href="/stylesheets/profile.css"/>
-    <script type="text/javascript" charset="utf-8">
-        mui.init();
-    </script>
-</head>
-<body>
-<div class="personal-profile-manager-bg">
-    <div class="personal-profile-manager-bg-bubble"></div>
-    <div class="personal-profile-manager-bg-bubble2"></div>
-    <div class="personal-profile-manager-bg-bubble3"></div>
-    <div class="personal-profile-manager-bg-bubble4"></div>
-</div>
-<div class="personal-profile-manager-intro">
-    <p class="personal-profile-manager-intro-icon">
-        <img src="/images/declare.png" alt="头像">
-    </p>
-    <p class="personal-profile-manager-intro-name">箱管公司&nbsp;&nbsp;<% username%></p>
-</div>
-<ul class="personal-profile-manager-operations">
-    <div class="personal-profile-manager-operations-line-wrapper personal-profile-manager-operations-item-two">
-        <li class="personal-profile-manager-operations-item">
-            <div class="personal-profile-manager-operations-item-image-wrapper">
-                <img src="/images/search.png" alt="集装箱查询">
-            </div>
-            <p class="personal-profile-manager-operations-item-word-info">
-                <a href="boxsearch" id="search">
-                    集装箱查询
-                </a>
-            </p>
-        </li>
-        <li class="personal-profile-manager-operations-item">
-            <div class="personal-profile-manager-operations-item-image-wrapper" style="width: 48%;padding-bottom:48%;top:12%">
-                <img src="/images/货车.png" alt="集装箱跟踪">
-            </div>
-            <p class="personal-profile-manager-operations-item-word-info">
-                <a href="stateback" id="state">
-                    集装箱跟踪
-                </a>
-            </p>
-        </li>
-    </div>
 
-    <div class="personal-profile-manager-operations-line-wrapper personal-profile-manager-operations-item-two">
-        <li class="personal-profile-manager-operations-item">
-            <div class="personal-profile-manager-operations-item-image-wrapper">
-                <img src="/images/我的订单.png" alt="打单审核">
-            </div>
-            <p class="personal-profile-manager-operations-item-word-info">
-                <a href="CardAudit" id="cardAuditing">
-                    打单审核
-                </a>
-            </p>
-        </li>
-        <li class="personal-profile-manager-operations-item">
-            <div class="personal-profile-manager-operations-item-image-wrapper" style="width: 48%;padding-bottom:48%;top:12%">
-                <img src="/images/box.png" alt="提箱审核">
-            </div>
-            <p class="personal-profile-manager-operations-item-word-info">
-                <a href="BoxAudit" id="caseAuditing">
-                    提箱审核
-                </a>
-            </p>
-        </li>
-    </div>
-</ul>
-<ul class="personal-profile-manager-operations">
-    <div class="personal-profile-manager-operations-line-wrapper personal-profile-manager-operations-item-two">
-        <li class="personal-profile-manager-operations-item">
-            <div class="personal-profile-manager-operations-item-image-wrapper">
-                <img src="/images/绑定.png" alt="绑定">
-            </div>
-            <p class="personal-profile-manager-operations-item-word-info">
-                <a id="shenfen"><%= openid==null || openid=='' ? '绑定' : '解绑' %></a>
-            </p>
-        </li>
-        <li class="personal-profile-manager-operations-item">
-            <div class="personal-profile-manager-operations-item-image-wrapper">
-                <img src="/images/退出.png" alt="退出">
-            </div>
-            <p class="personal-profile-manager-operations-item-word-info">
-                <a href="logout">退出</a>
-                <!--<a href="loginMain" id="shenfen">退出</a>-->
-            </p>
-        </li>
-    </div>
-</ul>
-</body>
-<script src="/javascripts/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" charset="utf-8">
-    mui.init();
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="/javascripts/mui.min.js"></script>
+		<link rel="stylesheet" href="/stylesheets/mui.min.css" />
+		<link rel="stylesheet" href="/stylesheets/profile.css" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
 
-    var openid = '';
-    mui.ready(function () {
-        mui('#search').addEventListener('tap', function () {
-            mui.openWindow({url: 'boxsearch', id: 'boxsearch'});
-        }
-        mui('#state').addEventListener('tap', function () {
-            mui.openWindow({url: 'stateback', id: 'stateback'});
-        }
-        mui('#cardAuditing').addEventListener('tap', function () {
-            mui.openWindow({url: 'CardAudit', id: 'CardAudit'});
-        }
-        mui('#caseAuditing').addEventListener('tap', function () {
-            mui.openWindow({url: 'BoxAudit', id: 'BoxAudit'});
-        }
-        var urlperson = decodeURI(location.search);
-        var theRequest = new Object();
-        if (urlperson.indexOf("?") != -1) {
-            var str = urlperson.substr(1);
-            strs = str.split("&");
-            for (var i = 0; i < strs.length; i++) {
-                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
-            }
-            openid = theRequest['openid'];
-        }
-        var oDiv = document.getElementById('shenfen');
-        var str = 'third?openid=';
-        if (openid == 1) {
-            openid = 0;
-            str += openid;
-            oDiv.setAttribute('href', str);
-            oDiv.innerHTML = "解绑";
-        }
-        else {
-            openid = 1;
-            str += openid;
-            oDiv.setAttribute('href', str);
-            oDiv.innerHTML = "绑定";
-        }
-    })
-</script>
+	<body>
+		<div class="personal-profile-manager-bg">
+			<div class="personal-profile-manager-bg-bubble"></div>
+			<div class="personal-profile-manager-bg-bubble2"></div>
+			<div class="personal-profile-manager-bg-bubble3"></div>
+			<div class="personal-profile-manager-bg-bubble4"></div>
+		</div>
+		<div class="personal-profile-manager-intro">
+			<p class="personal-profile-manager-intro-icon">
+				<img src="/images/declare.png" alt="头像">
+			</p>
+			<p class="personal-profile-manager-intro-name">箱管公司&nbsp;&nbsp;
+				<% username%>
+			</p>
+		</div>
+		<ul class="personal-profile-manager-operations">
+			<div class="personal-profile-manager-operations-line-wrapper personal-profile-manager-operations-item-two">
+				<li class="personal-profile-manager-operations-item">
+					<div class="personal-profile-manager-operations-item-image-wrapper">
+						<img src="/images/search.png" alt="集装箱查询">
+					</div>
+					<p class="personal-profile-manager-operations-item-word-info">
+						<a href="boxsearch" id="search" onclick="boxsearch()">
+							集装箱查询
+						</a>
+					</p>
+				</li>
+				<li class="personal-profile-manager-operations-item">
+					<div class="personal-profile-manager-operations-item-image-wrapper" style="width: 48%;padding-bottom:48%;top:12%">
+						<img src="/images/货车.png" alt="集装箱跟踪">
+					</div>
+					<p class="personal-profile-manager-operations-item-word-info">
+						<a href="stateback" id="state" onclick="stateback()">
+							集装箱跟踪
+						</a>
+					</p>
+				</li>
+			</div>
+
+			<div class="personal-profile-manager-operations-line-wrapper personal-profile-manager-operations-item-two">
+				<li class="personal-profile-manager-operations-item">
+					<div class="personal-profile-manager-operations-item-image-wrapper">
+						<img src="/images/我的订单.png" alt="打单审核">
+					</div>
+					<p class="personal-profile-manager-operations-item-word-info">
+						<a href="CardAudit" id="cardAuditing" onclick="CardAudit()">
+							打单审核
+						</a>
+					</p>
+				</li>
+				<li class="personal-profile-manager-operations-item">
+					<div class="personal-profile-manager-operations-item-image-wrapper" style="width: 48%;padding-bottom:48%;top:12%">
+						<img src="/images/box.png" alt="提箱审核">
+					</div>
+					<p class="personal-profile-manager-operations-item-word-info">
+						<a href="BoxAudit" id="caseAuditing" onclick="BoxAudit()">
+							提箱审核
+						</a>
+					</p>
+				</li>
+			</div>
+		</ul>
+		<ul class="personal-profile-manager-operations">
+			<div class="personal-profile-manager-operations-line-wrapper personal-profile-manager-operations-item-two">
+				<li class="personal-profile-manager-operations-item">
+					<div class="personal-profile-manager-operations-item-image-wrapper">
+						<img src="/images/绑定.png" alt="绑定">
+					</div>
+					<p class="personal-profile-manager-operations-item-word-info">
+						<a id="shenfen">
+							<%= openid==null || openid=='' ? '绑定' : '解绑' %>
+						</a>
+					</p>
+				</li>
+				<li class="personal-profile-manager-operations-item">
+					<div class="personal-profile-manager-operations-item-image-wrapper">
+						<img src="/images/退出.png" alt="退出">
+					</div>
+					<p class="personal-profile-manager-operations-item-word-info">
+						<a href="logout">退出</a>
+						<!--<a href="loginMain" id="shenfen">退出</a>-->
+					</p>
+				</li>
+			</div>
+		</ul>
+	</body>
+	<script src="/javascripts/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		function boxsearch(){
+			mui.openWindow({ url: 'boxsearch', id: 'boxsearch' });
+		}
+		function stateback(){
+			mui.openWindow({ url: 'stateback', id: 'stateback' });
+		}
+		function CardAudit(){
+			mui.openWindow({ url: 'CardAudit', id: 'CardAudit' });
+		}
+		function BoxAudit(){
+			mui.openWindow({ url: 'BoxAudit', id: 'BoxAudit' });
+		}
+		mui.init();
+
+		var openid = '';
+		mui.ready(function() {
+		
+			var urlperson = decodeURI(location.search);
+			var theRequest = new Object();
+			if(urlperson.indexOf("?") != -1) {
+				var str = urlperson.substr(1);
+				strs = str.split("&");
+				for(var i = 0; i < strs.length; i++) {
+					theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+				}
+				openid = theRequest['openid'];
+			}
+			var oDiv = document.getElementById('shenfen');
+			var str = 'third?openid=';
+			if(openid == 1) {
+				openid = 0;
+				str += openid;
+				oDiv.setAttribute('href', str);
+				oDiv.innerHTML = "解绑";
+			} else {
+				openid = 1;
+				str += openid;
+				oDiv.setAttribute('href', str);
+				oDiv.innerHTML = "绑定";
+			}
+		})
+		
+	</script>
+
 </html>

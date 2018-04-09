@@ -89,18 +89,15 @@
 
     var openid = '';
     mui.ready(function () {
-        mui('#search').addEventListener('tap', function () {
+    	document.getElementById("search").addEventListener("tap", function (event) {
             mui.openWindow({url: 'boxsearch', id: 'boxsearch'});
-        }
-        mui('#state').addEventListener('tap', function () {
+        })
+      	document.getElementById("state").addEventListener('tap', function (event) {
             mui.openWindow({url: 'stateback', id: 'stateback'});
-        }
-        mui('#state').addEventListener('tap', function () {
-            mui.openWindow({url: 'stateback', id: 'stateback'});
-        }
-        mui('#registerAudit').addEventListener('tap', function () {
-            mui.openWindow({url: 'registerAudit', id: 'registerAudit'});
-        }
+        })
+        document.getElementById("registerAudit").addEventListener('tap', function (event) {
+           mui.openWindow({url: 'registerAudit', id: 'registerAudit'});
+        })
         var urlperson = decodeURI(location.search);
         var theRequest = new Object();
         if (urlperson.indexOf("?") != -1) {
