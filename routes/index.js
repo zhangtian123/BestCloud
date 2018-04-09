@@ -110,7 +110,7 @@ router.get('/service', function (req, res, next) {
 
 /* GET 管理员. */
 router.get('/manager', function (req, res, next) {
-    /*if(req.session.user) {
+    if(req.session.user) {
         res.render('personalProfileForManager', {
             title: 'BestCloud',
             username: req.session.user.LoginCode,
@@ -121,41 +121,41 @@ router.get('/manager', function (req, res, next) {
         res.render('loginMain', {
             title: 'BestCloud'
         });
-    }*/
+    }
     res.render('personalProfileForManager');
 });
 
 /* GET 第三方. */
 router.get('/third', function (req, res, next) {
-    // if (req.session.user) {
-    //     res.render('personalProfileForThird', {
-    //         title: 'BestCloud',
-    //         username: req.session.user.LoginCode,
-    //         flag: req.session.user.FLAG,
-    //         openid: req.session.user.WechatOpenID
-    //     });
-    // } else {
-    //     res.render('loginMain', {
-    //         title: 'BestCloud'
-    //     });
-    // }
+    if (req.session.user) {
+        res.render('personalProfileForThird', {
+            title: 'BestCloud',
+            username: req.session.user.LoginCode,
+            flag: req.session.user.FLAG,
+            openid: req.session.user.WechatOpenID
+        });
+    } else {
+        res.render('loginMain', {
+            title: 'BestCloud'
+        });
+    }
     res.render('personalProfileForThird');
 });
 
 /* GET 客户. */
 router.get('/client', function (req, res, next) {
-    // if(req.session.user) {
-    // 	res.render('personalProfileForClient', {
-    // 		title: 'BestCloud',
-    // 		username: req.session.user.LoginCode,
-    // 		flag: req.session.user.FLAG,
-    // 		openid: req.session.user.WechatOpenID
-    // 	});
-    // } else {
-    // 	res.render('loginMain', {
-    // 		title: 'BestCloud'
-    // 	});
-    // }
+    if(req.session.user) {
+    	res.render('personalProfileForClient', {
+    		title: 'BestCloud',
+    		username: req.session.user.LoginCode,
+    		flag: req.session.user.FLAG,
+    		openid: req.session.user.WechatOpenID
+    	});
+    } else {
+    	res.render('loginMain', {
+    		title: 'BestCloud'
+    	});
+    }
     res.render('personalProfileForClient');
 });
 
@@ -221,17 +221,17 @@ router.get('/registerAudit', function (req, res, next) {
 });
 
 router.get('/registerDetail', function (req, res, next) {
-    // res.render('registerDetail', {
-    //     title: 'BestCloud',
-    //     UserName: req.session.register.registeruser,
-    //     TaxNo: req.session.register.TaxNo,
-    //     NameC: req.session.register.NameC,
-    //     NameE: req.session.register.NameE,
-    //     Address: req.session.register.Address,
-    //     AddressEN: req.session.register.AddressEN,
-    //     Email: req.session.register.Email,
-    //     FilePath: req.session.register.FilePath
-    // });
+    res.render('registerDetail', {
+        title: 'BestCloud',
+        UserName: req.session.register.registeruser,
+        TaxNo: req.session.register.TaxNo,
+        NameC: req.session.register.NameC,
+        NameE: req.session.register.NameE,
+        Address: req.session.register.Address,
+        AddressEN: req.session.register.AddressEN,
+        Email: req.session.register.Email,
+        FilePath: req.session.register.FilePath
+    });
 
     res.render('registerDetail');
 });

@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-    <title></title>
+    <title><%= title%></title>
     <script src="/javascripts/mui.min.js"></script>
     <link rel="stylesheet" href="/stylesheets/mui.min.css"/>
     <link rel="stylesheet" href="/stylesheets/profile.css"/>
@@ -28,24 +28,51 @@
     <p class="personal-profile-manager-intro-icon">
         <img src="/images/declare.png" alt="头像">
     </p>
-    <p class="personal-profile-manager-intro-name">报关行&nbsp;&nbsp;小红</p>
+    <p class="personal-profile-manager-intro-name">箱管公司&nbsp;&nbsp;<% username%></p>
 </div>
 <ul class="personal-profile-manager-operations">
     <div class="personal-profile-manager-operations-line-wrapper personal-profile-manager-operations-item-two">
         <li class="personal-profile-manager-operations-item">
             <div class="personal-profile-manager-operations-item-image-wrapper">
-                <img src="/images/feedback.png" alt="状态反馈">
+                <img src="/images/search.png" alt="集装箱查询">
             </div>
             <p class="personal-profile-manager-operations-item-word-info">
-                状态反馈
+                <a href="boxsearch" id="search">
+                    集装箱查询
+                </a>
             </p>
         </li>
         <li class="personal-profile-manager-operations-item">
             <div class="personal-profile-manager-operations-item-image-wrapper" style="width: 48%;padding-bottom:48%;top:12%">
-                <img src="/images/search.png" alt="运价查询">
+                <img src="/images/货车.png" alt="集装箱跟踪">
             </div>
             <p class="personal-profile-manager-operations-item-word-info">
-                运价查询
+                <a href="stateback" id="state">
+                    集装箱跟踪
+                </a>
+            </p>
+        </li>
+    </div>
+
+    <div class="personal-profile-manager-operations-line-wrapper personal-profile-manager-operations-item-two">
+        <li class="personal-profile-manager-operations-item">
+            <div class="personal-profile-manager-operations-item-image-wrapper">
+                <img src="/images/我的订单.png" alt="打单审核">
+            </div>
+            <p class="personal-profile-manager-operations-item-word-info">
+                <a href="CardAudit" id="cardAuditing">
+                    打单审核
+                </a>
+            </p>
+        </li>
+        <li class="personal-profile-manager-operations-item">
+            <div class="personal-profile-manager-operations-item-image-wrapper" style="width: 48%;padding-bottom:48%;top:12%">
+                <img src="/images/box.png" alt="提箱审核">
+            </div>
+            <p class="personal-profile-manager-operations-item-word-info">
+                <a href="BoxAudit" id="caseAuditing">
+                    提箱审核
+                </a>
             </p>
         </li>
     </div>
@@ -54,18 +81,19 @@
     <div class="personal-profile-manager-operations-line-wrapper personal-profile-manager-operations-item-two">
         <li class="personal-profile-manager-operations-item">
             <div class="personal-profile-manager-operations-item-image-wrapper">
-                <img src="/images/bind.png" alt="绑定">
+                <img src="/images/绑定.png" alt="绑定">
             </div>
             <p class="personal-profile-manager-operations-item-word-info">
-                绑定
+                <a id="shenfen"><%= openid==null || openid=='' ? '绑定' : '解绑' %></a>
             </p>
         </li>
         <li class="personal-profile-manager-operations-item">
             <div class="personal-profile-manager-operations-item-image-wrapper">
-                <img src="/images/exit.png" alt="退出">
+                <img src="/images/退出.png" alt="退出">
             </div>
             <p class="personal-profile-manager-operations-item-word-info">
-                退出
+                <a href="logout">退出</a>
+                <!--<a href="loginMain" id="shenfen">退出</a>-->
             </p>
         </li>
     </div>

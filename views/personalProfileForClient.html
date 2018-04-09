@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-    <title></title>
+    <title><%= title%></title>
     <script src="/javascripts/mui.min.js"></script>
     <link rel="stylesheet" href="/stylesheets/mui.min.css"/>
     <link rel="stylesheet" href="/stylesheets/profile.css"/>
@@ -26,34 +26,41 @@
 </div>
 <div class="personal-profile-manager-intro">
     <p class="personal-profile-manager-intro-icon">
-        <img src="/images/defaultimage.jpg" alt="头像">
+        <img src="/images/exUser.png" alt="头像">
     </p>
-    <p class="personal-profile-manager-intro-name">客户&nbsp;&nbsp;小明</p>
+    <p class="personal-profile-manager-intro-name">车队&nbsp;&nbsp;<%= username%></p>
 </div>
 <ul class="personal-profile-manager-operations">
     <div class="personal-profile-manager-operations-line-wrapper">
         <li class="personal-profile-manager-operations-item">
-            <div class="personal-profile-manager-operations-item-image-wrapper" style="width: 48%;padding-bottom:53%;top:12%">
-                <img src="/images/online.png" alt="在线下单">
+            <div class="personal-profile-manager-operations-item-image-wrapper"
+                 style="width: 48%;padding-bottom:48%;top:12%">
+                <img src="/images/search.png" alt="集装箱查询"/>
             </div>
             <p class="personal-profile-manager-operations-item-word-info">
-                在线下单
+                <a href="boxsearch" id="search">
+                    集装箱查询
+                </a>
             </p>
         </li>
         <li class="personal-profile-manager-operations-item">
             <div class="personal-profile-manager-operations-item-image-wrapper">
-                <img src="/images/list.png" alt="订单列表">
+                <img src="/images/货车.png" alt="集装箱跟踪">
             </div>
             <p class="personal-profile-manager-operations-item-word-info">
-                订单列表
+                <a href="stateback" id="state">
+                    集装箱跟踪
+                </a>
             </p>
         </li>
         <li class="personal-profile-manager-operations-item">
             <div class="personal-profile-manager-operations-item-image-wrapper">
-                <img src="/images/order_trace.png" alt="订单跟踪">
+                <img src="/images/我的订单.png" alt="打单预约">
             </div>
             <p class="personal-profile-manager-operations-item-word-info">
-                订单跟踪
+                <a id="ordercard" href="ordercard">
+                    打单预约
+                </a>
             </p>
         </li>
     </div>
@@ -61,18 +68,12 @@
         <li class="personal-profile-manager-operations-item">
             <div class="personal-profile-manager-operations-item-image-wrapper"
                  style="width: 53%;padding-bottom:58%;top:12%">
-                <img src="/images/bill.png" alt="账单确认">
+                <img src="/images/box.png" alt="提箱预约">
             </div>
             <p class="personal-profile-manager-operations-item-word-info">
-                账单确认
-            </p>
-        </li>
-        <li class="personal-profile-manager-operations-item">
-            <div class="personal-profile-manager-operations-item-image-wrapper" style="width: 48%;padding-bottom:48%;top:12%">
-                <img src="/images/search.png" alt="运价查询">
-            </div>
-            <p class="personal-profile-manager-operations-item-word-info">
-                运价查询
+                <a href="ordercase" id="ordercase">
+                    提箱预约
+                </a>
             </p>
         </li>
     </div>
@@ -84,15 +85,16 @@
                 <img src="/images/bind.png" alt="绑定">
             </div>
             <p class="personal-profile-manager-operations-item-word-info">
-                绑定
+                <a id="shenfen"><%= openid==null || openid=='' ? '绑定' : '解绑' %></a>
             </p>
         </li>
         <li class="personal-profile-manager-operations-item">
             <div class="personal-profile-manager-operations-item-image-wrapper">
-                <img src="/images/exit.png" alt="退出">
+                <img src="/images/退出.png" alt="退出">
             </div>
             <p class="personal-profile-manager-operations-item-word-info">
-                退出
+                <a href="logout">退出</a>
+                <!--<a href="loginMain">退出</a>-->
             </p>
         </li>
     </div>

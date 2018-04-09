@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-    <title></title>
+    <title><% title%></title>
     <script src="/javascripts/mui.min.js"></script>
     <link href="/stylesheets/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/stylesheets/base.css"/>
@@ -26,7 +26,7 @@
     <div class="mui-content mui-scroll-wrapper" style="background-color: #EFEFEF;">
         <div class="mui-scroll detailcontent" style="margin:0;width:100%;">
             <div class="detail-content-top-background">
-                <p class="detail-content-username">用户名&nbsp;&nbsp;&nbsp;&nbsp;Xena</p>
+                <p class="detail-content-username">用户名&nbsp;&nbsp;&nbsp;&nbsp;<%= UserName%></p>
             </div>
             <div class="detail-content-detailed-info">
                 <div class="detail-content-item">
@@ -35,18 +35,18 @@
                     </div>
                     <div class="detail-content-item-line">
                         <div class="detail-content-item-line-title">
-                            中文
+                            企业中文名
                         </div>
                         <div class="detail-content-item-line-content">
-                            xxxxxxxxxxxxxxxxxxxx
+                            <%= NameC%>
                         </div>
                     </div>
                     <div class="detail-content-item-line">
                         <div class="detail-content-item-line-title">
-                            英文
+                            企业英文名
                         </div>
                         <div class="detail-content-item-line-content">
-                            xxxxxxxxxxxxxxxxxxxx
+                            <%= NameE%>
                         </div>
                     </div>
                 </div>
@@ -56,18 +56,18 @@
                     </div>
                     <div class="detail-content-item-line">
                         <div class="detail-content-item-line-title">
-                            中文
+                            企业中文地址
                         </div>
                         <div class="detail-content-item-line-content">
-                            xxxxxxxxxxxxxxxxxxxx
+                            <%= Address%>
                         </div>
                     </div>
                     <div class="detail-content-item-line">
                         <div class="detail-content-item-line-title">
-                            英文
+                            企业英文地址
                         </div>
                         <div class="detail-content-item-line-content">
-                            xxxxxxxxxxxxxxxxxxxx
+                            <%= AddressEN%>
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                             纳税号
                         </div>
                         <div class="detail-content-item-line-content">
-                            xxxxxxxxxxxxxxxxxxxx
+                            <%= TaxNo%>
                         </div>
                     </div>
                     <div class="detail-content-item-line">
@@ -88,7 +88,7 @@
                             企业邮箱
                         </div>
                         <div class="detail-content-item-line-content">
-                            xxxxxxxxxxxxxxxxxxxx
+                            <%= Email%>
                         </div>
                     </div>
                     <div class="detail-content-item-line">
@@ -96,13 +96,13 @@
                     </div>
                     <div class="detail-content-item-line images-container">
                         <div class="image-licence-container">
-                            <img src="/images/licence.jpg" alt="营业执照" class="image-licence">
+                            <img src="../<%- FilePath%>" alt="营业执照" class="image-licence">
                         </div>
                         <div class="image-licence-container">
-                            <img src="/images/licence.jpg" alt="营业执照" class="image-licence">
+                            <img src="../<%- FilePath%>" alt="营业执照" class="image-licence">
                         </div>
                         <div class="image-licence-container">
-                            <img src="/images/licence.jpg" alt="营业执照" class="image-licence">
+                            <img src="../<%- FilePath%>" alt="营业执照" class="image-licence">
                         </div>
                     </div>
                 </div>
