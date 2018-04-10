@@ -29,7 +29,7 @@
 			<span>管理员 <%= username %></span>
 		</div>
 
-		<ul class="personal-content" style="margin-top:1.5rem; border-bottom: solid .1rem #ebebeb;">
+		<ul class="personal-content" style="margin-top:1rem; border-bottom: solid .1rem #ebebeb;">
 			<li class="personal-item">
 				<a href="boxsearch" id="search">
 					<img src="/images/search.png" /><br />集装箱查询
@@ -48,9 +48,9 @@
 		</ul>
 		<ul class="personal-content">
 			<li class="personal-item">
-				<img src="/images/bind.png" /><br />
 				<a id="shenfen" style="font-size: 8px;">
-					<%= openid==null || openid=='' ? '绑定' : '解绑' %>
+					<img src="/images/bind.png" /><br />
+					<%= openid==null || openid==''||openid=='undefined' ? '绑定' : '解绑' %>
 				</a>
 			</li>
 			<li class="personal-item">
@@ -64,56 +64,56 @@
 	<script type="text/javascript" charset="utf-8">
 		mui.init();
 
-		var openid = '';
+		var flag = 0;
+		var openid = '<%= openid %>';
+		if(openid == null || openid == '' || openid == 'undefined') {
+			flag = 0;
+		} else {
+			flag = 1;
+		}
 		mui.ready(function() {
-					mui('#search').addEventListener('tap', function() {
-								mui.openWindow({
-									url: 'boxsearch',
-									id: 'boxsearch'
-								});
-							}
-							mui('#state').addEventListener('tap', function() {
-									mui.openWindow({
-										url: 'stateback',
-										id: 'stateback'
-									});
-								}
-								mui('#state').addEventListener('tap', function() {
-										mui.openWindow({
-											url: 'stateback',
-											id: 'stateback'
-										});
-									}
-									mui('#registerAudit').addEventListener('tap', function() {
-											mui.openWindow({
-												url: 'registerAudit',
-												id: 'registerAudit'
-											});
-										}
-										var urlperson = decodeURI(location.search);
-										var theRequest = new Object();
-										if(urlperson.indexOf("?") != -1) {
-											var str = urlperson.substr(1);
-											strs = str.split("&");
-											for(var i = 0; i < strs.length; i++) {
-												theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
-											}
-											openid = theRequest['openid'];
-										}
-										var oDiv = document.getElementById('shenfen');
-										var str = 'manager?openid=';
-										if(openid == 1) {
-											openid = 0;
-											str += openid;
-											oDiv.setAttribute('href', str);
-											oDiv.innerHTML = "解绑";
-										} else {
-											openid = 1;
-											str += openid;
-											oDiv.setAttribute('href', str);
-											oDiv.innerHTML = "绑定";
-										}
-									})
+			document.getElementById("search").addEventListener("tap", function(event) {
+				mui.openWindow({
+					url: 'boxsearch',
+					id: 'boxsearch'
+				});
+			})
+			document.getElementById("state").addEventListener("tap", function(event) {
+				mui.openWindow({
+					url: 'stateback',
+					id: 'stateback'
+				});
+			})
+			document.getElementById("registerAudit").addEventListener("tap", function(event) {
+				mui.openWindow({
+					url: 'registerAudit',
+					id: 'registerAudit'
+				});
+			})
+			var urlperson = decodeURI(location.search);
+			var theRequest = new Object();
+			if(urlperson.indexOf("?") != -1) {
+				var str = urlperson.substr(1);
+				strs = str.split("&");
+				for(var i = 0; i < strs.length; i++) {
+					theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+				}
+				openid = theRequest['openid'];
+			}
+			var oDiv = document.getElementById('shenfen');
+			var str = 'manager?openid=';
+			if(openid == 1) {
+				openid = 0;
+				str += openid;
+				oDiv.setAttribute('href', str);
+				$('#shenfen').html('<img src="/images/bind.png"/><br/>解绑');
+			} else {
+				openid = 1;
+				str += openid;
+				oDiv.setAttribute('href', str);
+				$('#shenfen').html('<img src="/images/bind.png"/><br/>绑定');
+			}
+		})
 	</script>
 
 </html>

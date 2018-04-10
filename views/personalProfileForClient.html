@@ -57,10 +57,7 @@
 		</ul>
 		<ul class="personal-content">
 			<li class="personal-item">
-				<img src="/images/bind.png" /><br />
-				<a id="shenfen" style="font-size: 8px;">
-					<%= openid==null || openid=='' ? '绑定' : '解绑' %>
-				</a>
+				<a id="shenfen" style="font-size: 8px;"><img src="/images/bind.png" /><br /><%= openid==null || openid==''||openid=='undefined' ? '绑定' : '解绑' %></a>
 			</li>
 			<li class="personal-item">
 				<a href="logout">
@@ -72,7 +69,14 @@
 	<script src="/javascripts/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" charset="utf-8">
 		mui.init();
-
+		var flag = 0;
+		var openid = '<%= openid %>';
+		/*console.log(openid)*/
+		if (openid == null || openid == '' || openid == 'undefined'){
+			flag = 0;
+		}else{
+			flag = 1;
+		}
 		mui.ready(function() {
 			document.getElementById("search").addEventListener("tap", function(event) {
 				mui.openWindow({
@@ -80,30 +84,18 @@
 					id: 'boxsearch'
 				});
 			})
-			//			mui('#search').addEventListener('tap', function(){
-			//				mui.openWindow({url:'boxsearch',id:'boxsearch'});
-			//			});
 			document.getElementById("state").addEventListener('tap', function(event) {
 				mui.openWindow({
 					url: 'stateback',
 					id: 'stateback'
 				});
 			})
-			//			mui('#state').addEventListener('tap', function(){
-			//				mui.openWindow({url:'stateback',id:'stateback'});
-			//			});
-			//			mui('#ordercard').addEventListener('tap', function(){
-			//				mui.openWindow({url:'ordercard',id:'ordercard'});
-			//			});
 			document.getElementById("ordercard").addEventListener('tap', function(event) {
 				mui.openWindow({
 					url: 'ordercard',
 					id: 'ordercard'
 				});
 			})
-			//			mui('#ordercase').addEventListener('tap', function(){
-			//				mui.openWindow({url:'ordercase',id:'ordercase'});
-			//			});
 			document.getElementById("ordercase").addEventListener('tap', function(event) {
 				mui.openWindow({
 					url: 'ordercase',
@@ -119,10 +111,17 @@
 					success: function(data) {
 						var result = eval(data);
 						if(result.result == 1) {
-							if(mui('#shenfen')[0].innerText == '绑定')
-								mui('#shenfen')[0].innerText = '解绑';
-							else
-								mui('#shenfen')[0].innerText = '绑定';
+							/*console.log($('#shenfen').html() )
+							console.log($('#shenfen').html().trim() === '<img src="/images/bind.png"/><br/>解绑')
+							console.log(flag)*/
+							if(flag == 0){
+								$('#shenfen').html('<img src="/images/bind.png"/><br/>解绑');
+								flag = 1;
+							}
+							else{
+								$('#shenfen').html('<img src="/images/bind.png"/><br/>绑定');
+								flag = 0;
+							}
 						}
 					},
 					error: function() {
