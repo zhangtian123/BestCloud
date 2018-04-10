@@ -3,142 +3,134 @@
 	时间：2017-08-10
 	描述：车队个人中心
 -->
+<!--
+	作者：anna
+	时间：2018-04-10
+	描述：UI优化
+-->
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-    <title><%= title%></title>
-    <script src="/javascripts/mui.min.js"></script>
-    <link rel="stylesheet" href="/stylesheets/mui.min.css"/>
-    <link rel="stylesheet" href="/stylesheets/profile.css"/>
-    <script type="text/javascript" charset="utf-8">
-        mui.init();
-    </script>
-</head>
-<body>
-<div class="personal-profile-manager-bg">
-    <div class="personal-profile-manager-bg-bubble"></div>
-    <div class="personal-profile-manager-bg-bubble2"></div>
-    <div class="personal-profile-manager-bg-bubble3"></div>
-    <div class="personal-profile-manager-bg-bubble4"></div>
-</div>
-<div class="personal-profile-manager-intro">
-    <p class="personal-profile-manager-intro-icon">
-        <img src="/images/vehicle.png" alt="头像">
-    </p>
-    <p class="personal-profile-manager-intro-name">车队&nbsp;&nbsp;<%= username%></p>
-</div>
-<ul class="personal-profile-manager-operations">
-    <div class="personal-profile-manager-operations-line-wrapper">
-        <li class="personal-profile-manager-operations-item">
-            <div class="personal-profile-manager-operations-item-image-wrapper"
-                 style="width: 48%;padding-bottom:48%;top:12%">
-                <img src="/images/search.png" alt="集装箱查询"/>
-            </div>
-            <p class="personal-profile-manager-operations-item-word-info">
-                <a href="boxsearch" id="search">
-                    集装箱查询
-                </a>
-            </p>
-        </li>
-        <li class="personal-profile-manager-operations-item">
-            <div class="personal-profile-manager-operations-item-image-wrapper">
-                <img src="/images/货车.png" alt="集装箱跟踪">
-            </div>
-            <p class="personal-profile-manager-operations-item-word-info">
-                <a href="stateback" id="state">
-                    集装箱跟踪
-                </a>
-            </p>
-        </li>
-        <li class="personal-profile-manager-operations-item">
-            <div class="personal-profile-manager-operations-item-image-wrapper">
-                <img src="/images/我的订单.png" alt="打单预约">
-            </div>
-            <p class="personal-profile-manager-operations-item-word-info">
-                <a id="ordercard" href="ordercard">
-                    打单预约
-                </a>
-            </p>
-        </li>
-    </div>
-    <div class="personal-profile-manager-operations-line-wrapper">
-        <li class="personal-profile-manager-operations-item">
-            <div class="personal-profile-manager-operations-item-image-wrapper"
-                 style="width: 53%;padding-bottom:58%;top:12%">
-                <img src="/images/box.png" alt="提箱预约">
-            </div>
-            <p class="personal-profile-manager-operations-item-word-info">
-                <a href="ordercase" id="ordercase">
-                    提箱预约
-                </a>
-            </p>
-        </li>
-    </div>
-</ul>
-<ul class="personal-profile-manager-operations">
-    <div class="personal-profile-manager-operations-line-wrapper">
-        <li class="personal-profile-manager-operations-item">
-            <div class="personal-profile-manager-operations-item-image-wrapper">
-                <img src="/images/bind.png" alt="绑定">
-            </div>
-            <p class="personal-profile-manager-operations-item-word-info">
-                <a id="shenfen"><%= openid==null || openid=='' ? '绑定' : '解绑' %></a>
-            </p>
-        </li>
-        <li class="personal-profile-manager-operations-item">
-            <div class="personal-profile-manager-operations-item-image-wrapper">
-                <img src="/images/exit.png" alt="退出">
-            </div>
-            <p class="personal-profile-manager-operations-item-word-info">
-                <a href="logout">退出</a>
-                <!--<a href="loginMain">退出</a>-->
-            </p>
-        </li>
-    </div>
-</ul>
-</body>
-<script src="/javascripts/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" charset="utf-8">
-    mui.init();
 
-    mui.ready(function () {
-        document.getElementById("search").addEventListener("tap", function (event) {
-            mui.openWindow({url: 'boxsearch', id: 'boxsearch'});
-        })
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="/javascripts/mui.min.js"></script>
+		<link rel="stylesheet" href="/stylesheets/mui.min.register_login.css" />
+		<link rel="stylesheet" href="/stylesheets/profile.css" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
 
-        document.getElementById("state").addEventListener('tap', function (event) {
-            mui.openWindow({url: 'stateback', id: 'stateback'});
-        })
-        document.getElementById("ordercard").addEventListener('tap', function (event) {
-            mui.openWindow({url: 'ordercard', id: 'ordercard'});
-        })
+	<body>
+		<div class="top-bar">
+			<div class="profilePhoto">
+				<img src="/images/vehicle.png" />
+			</div>
+			<br />
+			<span>车队 <%= username %></span>
+		</div>
+		<ul class="personal-content" style="margin-top:0.8rem;">
+			<li class="personal-item">
+				<a href="boxsearch" id="search">
+					<img src="/images/search.png" /><br />集装箱查询
+				</a>
+			</li>
+			<li class="personal-item">
+				<a href="stateback" id="state">
+					<img src="/images/case_trace.png " /><br />集装箱跟踪
+				</a>
+			</li>
+		</ul>
+		<ul class="personal-content" style="margin-top:-1rem; border-bottom: solid .1rem #ebebeb;">
+			<li class="personal-item">
+				<a href="ordercard" id="ordercard">
+					<img src="/images/online.png" /><br />打单预约
+				</a>
+			</li>
+			<li class="personal-item">
+				<a href="ordercase" id="ordercase">
+					<img src="/images/case.png " /><br />提箱预约
+				</a>
+			</li>
+		</ul>
+		<ul class="personal-content">
+			<li class="personal-item">
+				<img src="/images/bind.png" /><br />
+				<a id="shenfen" style="font-size: 8px;">
+					<%= openid==null || openid=='' ? '绑定' : '解绑' %>
+				</a>
+			</li>
+			<li class="personal-item">
+				<a href="logout">
+					<img src="/images/exit.png" /><br />退出
+				</a>
+			</li>
+		</ul>
+	</body>
+	<script src="/javascripts/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
 
-        document.getElementById("ordercase").addEventListener('tap', function (event) {
-            mui.openWindow({url: 'ordercase', id: 'ordercase'});
-        })
-        document.getElementById("shenfen").addEventListener('tap', function () {
-            mui.ajax({
-                type: "post",
-                url: "/bindingwx",
-                data: {},
-                async: true,
-                success: function (data) {
-                    var result = eval(data);
-                    if (result.result == 1) {
-                        if (mui('#shenfen')[0].innerText == '绑定')
-                            mui('#shenfen')[0].innerText = '解绑';
-                        else
-                            mui('#shenfen')[0].innerText = '绑定';
-                    }
-                },
-                error: function () {
-                    mui.alert(mui('#shenfen').text() + "出现错误");
-                }
-            });
-        });
-    })
-</script>
+		mui.ready(function() {
+			document.getElementById("search").addEventListener("tap", function(event) {
+				mui.openWindow({
+					url: 'boxsearch',
+					id: 'boxsearch'
+				});
+			})
+			//			mui('#search').addEventListener('tap', function(){
+			//				mui.openWindow({url:'boxsearch',id:'boxsearch'});
+			//			});
+			document.getElementById("state").addEventListener('tap', function(event) {
+				mui.openWindow({
+					url: 'stateback',
+					id: 'stateback'
+				});
+			})
+			//			mui('#state').addEventListener('tap', function(){
+			//				mui.openWindow({url:'stateback',id:'stateback'});
+			//			});
+			//			mui('#ordercard').addEventListener('tap', function(){
+			//				mui.openWindow({url:'ordercard',id:'ordercard'});
+			//			});
+			document.getElementById("ordercard").addEventListener('tap', function(event) {
+				mui.openWindow({
+					url: 'ordercard',
+					id: 'ordercard'
+				});
+			})
+			//			mui('#ordercase').addEventListener('tap', function(){
+			//				mui.openWindow({url:'ordercase',id:'ordercase'});
+			//			});
+			document.getElementById("ordercase").addEventListener('tap', function(event) {
+				mui.openWindow({
+					url: 'ordercase',
+					id: 'ordercase'
+				});
+			})
+			document.getElementById("shenfen").addEventListener('tap', function() {
+				mui.ajax({
+					type: "post",
+					url: "/bindingwx",
+					data: {},
+					async: true,
+					success: function(data) {
+						var result = eval(data);
+						if(result.result == 1) {
+							if(mui('#shenfen')[0].innerText == '绑定')
+								mui('#shenfen')[0].innerText = '解绑';
+							else
+								mui('#shenfen')[0].innerText = '绑定';
+						}
+					},
+					error: function() {
+						mui.alert(mui('#shenfen').text() + "出现错误");
+					}
+				});
+			});
+		})
+	</script>
+
 </html>
