@@ -8,21 +8,22 @@
 .topBack {
 	background-color: #0078cd;
 	width: 100%;
-	height: 150px;
+	height: 10rem;
 	z-index: 9;
 	text-align: center;
 }
 
 .statusText {
 	color: white;
-	padding-top: 20px;
+	padding-top: 1.5rem;
+	font-size: 1rem;
 }
 
 .centerBack {
 	background-color: white;
 	width: 90%;
-	height: 300px;
-	margin: -80px 0 0 5%;
+	height: 22rem;
+	margin: -18% 0 0 5%;
 	border-radius: 5px;
 	z-index: 99;
 }
@@ -36,7 +37,7 @@
 
 .GuideText {
 	width: 50%;
-	height: 30px;
+	height: 2rem;
 	padding-bottom: 10px;
 	text-align: center;
 	/*border-bottom: 3px solid #0078cd;*/
@@ -44,19 +45,20 @@
 
 .GuideTextHover {
 	width: 50%;
-	height: 30px;
+	height: 2rem;
 	padding-bottom: 10px;
 	text-align: center;
 	border-bottom: 3px solid #0078cd;
 }
 
+
 .GuideWord {
-	font-size: 1.2rem;
+	font-size: 1rem;
 	color: #79797a;
 }
 
 .GuideWordHover {
-	font-size: 1.2rem;
+	font-size: 1rem;
 	color: #0078cd;
 }
 
@@ -64,18 +66,21 @@
 	display: flex;
 	flex-direction: row;
 	padding-top: 10px;
+	width: 100%;
 }
 
 .rowText {
 	font-size: 1rem;
 	color: #79797a;
-	padding: 20px 0 0 30px;
+	padding: 6% 0 0 6%;
 }
+
 
 .btn {
 	width: 70%;
-	height: 25px;
-	margin: 20px 0 0 20px;
+	height: 1.5rem;
+	font-size: 1rem;
+	margin: 6% 0 0 6%;
 	padding: 5px 5px;
 	/*border: none;
 	border-bottom: 1px solid #ebebeb;*/
@@ -85,7 +90,8 @@
 
 .description {
 	width: 70%;
-	height: 150px;
+	height: 10rem;
+	font-size: 1rem;
 	margin: 15px 0 0 20px;
 	padding: 5px 5px;
 	/*border: none;
@@ -111,7 +117,7 @@
 
 .GuideTextPickup {
 	width: 100%;
-	height: 30px;
+	height: 2rem;
 	padding-bottom: 10px;
 	text-align: center;
 	border-bottom: 3px solid #0078cd;
@@ -120,7 +126,7 @@
 .centerBackPickup {
 	background-color: white;
 	width: 90%;
-	height: 440px;
+	height: 29rem;
 	margin: -80px 0 0 5%;
 	border-radius: 5px;
 	z-index: 99;
@@ -136,25 +142,25 @@
 
 .time {
 	width: 60%;
-	height: 20px;
-	margin: 15px 0 0 20px;
-	padding: 5px 5px;
+	font-size: 1rem;
+	height: 1.5rem;
+	margin: 0.8rem 0 0 1.5rem;
 	border: none;
 }
 
 .btnPickup {
-	width: 65%;
-	height: 20px;
-	margin: 10px 0 0 20px;
-	padding: 5px 5px;
+	width: 60%;
+	font-size: 1rem;
+	height: 1.5rem;
+	margin: 0.8rem 0 0 1.6rem;
 	border: none;
 }
 
 .inputPickup {
 	width: 60%;
-	height: 20px;
-	margin: 10px 0 0 20px;
-	padding: 5px 5px;
+	font-size: 1rem;
+	height: 1.5rem;
+	margin: 0.8rem 0 0 1.5rem;
 	border: none;
 }
 
@@ -163,34 +169,38 @@
 }
 
 .descriptionPickup {
-	width: 65%;
-	height: 100px;
-	margin: 15px 0 0 20px;
-	padding: 5px 5px;
+	width: 60%;
+	font-size: 1rem;
+	height: 3rem;
+	margin: 6% 0 0 0%;
 	border: none;
 	border-bottom: 1px solid gray;
 	/*border: 1px solid gray;*/
 	border-radius: 5px;
 }
-.cameraBtn{
+
+.cameraBtn {
 	position: relative;
-    left: 0rem;
-    opacity:0;
-    cursor: pointer;
-    height: 3rem;
+	left: 0rem;
+	opacity: 0;
+	cursor: pointer;
+	height: 3rem;
 }
-.addBtn{
-    position: relative;
-    opacity:0;
-    cursor: pointer;
-    height: 3rem;
+
+.addBtn {
+	position: relative;
+	opacity: 0;
+	cursor: pointer;
+	height: 3rem;
 }
+
 .cameraBtnBackBorder {
 	position: relative;
-    width: 3rem;  
-    border-radius: 1rem;
-    float: left;
+	width: 3rem;
+	border-radius: 1rem;
+	float: left;
 }
+
 .AddBtnBackBorder {
 	position: relative;
 	width: 3rem;
@@ -215,14 +225,16 @@
 	background-size: contain;
 	margin: 5px 0;
 }
-.newImg{
-    position: relative;
+
+.newImg {
+	position: relative;
 }
-.newImgstyle{
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 1rem;
-    margin: 5px 0px 0px 10px;
+
+.newImgstyle {
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 1rem;
+	margin: 5px 0px 0px 10px;
 }
 
 
