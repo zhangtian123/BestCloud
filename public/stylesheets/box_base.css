@@ -10,6 +10,150 @@ body,label
 .maincontent{
 	/*padding-top: 2rem;*/
 }
+.smallbtn-audit {
+	display: inline-block;
+	/*padding: px 20px;*/
+	font-size: 15px;
+	color: white;
+	height:30px;
+	vertical-align: middle;
+	background: linear-gradient(to right, #36a2ef, #0078cd);
+	line-height: 10px;
+}
+/*注册详细页头部*/
+.register-detail-header{
+	color:white;
+	width:100%;
+	height:10rem;
+	background-color: #0078cd;
+	position: fixed;
+}
+
+.register-content-font{
+	font-size: 15px;
+	margin-top:10px;
+}
+
+.positioncontrol {
+	position: absolute;
+	/*left: 4rem;
+	top: 1rem;*/
+	top:15%;
+	text-align: center;
+	width:100%;
+	/*left:40%;*/
+}
+
+/*注册详情企业名称部分*/
+.detail-company-name{
+	position: absolute;
+	left:2%;
+	margin-top:16%;
+	width:96%;
+	height:7rem;
+	background-color: white;
+	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0.5rem 0 2rem #aaaaaa;
+}
+
+.detail-company-name-title{
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	top:5px;
+	left: 10px;
+	vertical-align: bottom;
+	/*line-height: 2rem;*/
+}
+
+/*图片*/
+.detail-img{
+	width:2rem;
+	height:2rem;
+}
+
+.detail-title{
+	margin-left:2.5rem;
+	margin-top:9px;
+	position: absolute;
+	/*vertical-align: bottom;*/
+}
+
+/*具体信息*/
+.detail-normal{
+	left:3rem;
+	top:10px;
+	position:relative;
+	display: flex;
+	flex-direction: row;
+}
+
+.second-line{
+	margin-top:10px;
+}
+
+.address-part-detail{
+	/*position: fixed;*/
+	margin-top:11.5rem;
+	margin-left:2%;
+	width:96%;
+	height:7rem;
+	background-color: white;
+	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0.5rem 0 2rem #aaaaaa;
+}
+
+.other-part-detail{
+	margin-top:0.5rem;
+	margin-left:2%;
+	width:96%;
+	height:13rem;
+	background-color: white;
+	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0.5rem 0 2rem #aaaaaa;
+}
+
+.other-part-img{
+	width:4rem;
+}
+.res-title{
+	width:100%;
+	text-align: center;
+	margin-top:5%;
+}
+
+.img-margin{
+	margin-left:1rem;
+}
+.register-content-font{
+	font-size: 15px;
+	margin-top:10px;
+}
+.a-little-left{
+	margin-left:20px;
+}
+.dashLine1 {
+	width: 92%;
+	border: 1px dashed #ebebeb;
+	margin-left:4%;
+}
+/*.注册审核彩色边*/
+.colorful{
+	position:absolute;
+	left:0;
+	top:0;
+	width:0.5rem;
+	height:100%;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	background: linear-gradient(to top,#36a2ef,#ff9a76);
+}
 /*左半圆*/
 
 .circle-l {
